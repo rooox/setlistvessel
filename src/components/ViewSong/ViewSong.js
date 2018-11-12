@@ -1,8 +1,12 @@
 import React, { Component } from "react";
-import "viewsong.css";
+import "./viewsong.css";
 
 export default class ViewSong extends Component {
   render() {
-    return <div />;
+    return (
+      <div>
+        <h4>View Song</h4>
+      </div>
+    );
   }
 }
