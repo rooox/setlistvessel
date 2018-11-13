@@ -4,7 +4,7 @@ import "./viewsets.css";
 export default class ViewSets extends Component {
   render() {
     return (
-      <div>
+      <div className="background">
         <h4>View Sets</h4>
       </div>
     );

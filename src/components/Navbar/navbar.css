@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css?family=Cinzel");
+@import url("https://fonts.googleapis.com/css?family=PT+Serif:400,400i");
+
+* {
+  box-sizing: border-box;
+}
+header {
+  display: flex;
+  width: 100vw;
+  height: 10vh;
+  background-color: black;
+  border-style: solid;
+  border-color: #b89130;
+  /* border-color: #3a3834; */
+  border-width: 0 0 2px 0;
+}
+
+/* @media (min-width: 500px) {
+  .logo {
+    height: 7vh;
+    margin: 8px 12px 0 2px;
+    /* padding-top: 12px; */
+
+@media (min-width: 800px) {
+  .logo {
+    height: 10vh;
+    margin: 8px 12px 0 18px;
+    /* padding-top: 12px; */
+  }
+}
+
+.slogo--nav {
+  height: 7vh;
+  margin: 8px 12px 0 18px;
+  /* padding-top: 12px; */
+}
+.links {
+  display: flex;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  align-items: center;
+  justify-content: flex-end;
+  color: #b89130;
+}
+
+button {
+  font-family: "PT Serif", serif;
+  font-weight: 400i;
+  font-size: 14px;
+  align-items: flex-end;
+  justify-content: flex-end;
+  background-color: #b89130;
+}
+
+.logout--button {
+  font-family: "PT Serif", serif;
+  font-weight: 400i;
+  font-size: 12px;
+  align-items: flex-end;
+  justify-content: flex-end;
+  background-color: darkgrey;
+}

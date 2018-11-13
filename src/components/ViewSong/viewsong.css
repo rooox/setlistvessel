@@ -1,0 +1,10 @@
+.background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 86vh;
+  /* padding: 1rem; */
+  background: url(../Navbar/ocean2.jpg);
+  background-color: black;
+  /* background-color: #363636; */
+}
