@@ -56,7 +56,7 @@
   margin: 10px;
 }
 
-.buttons {
+.register-buttons {
   display: flex;
   width: 300px;
   justify-content: center;
@@ -98,12 +98,11 @@ input {
   border-width: 1px;
   border-color: rgb(134, 130, 130);
   color: rgb(233, 223, 223);
-  font-family: Arial, sans-serif;
   height: 29px;
   font-size: 20px;
   margin-top: 12px;
   padding-left: 7px;
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: "PT Serif", serif;
   font-size: 17px;
   display: table-cell;
   width: 100%;
@@ -113,9 +112,9 @@ input {
   box-sizing: content-box; */
 }
 
-h2 {
+/* h2 {
   /* margin: 10px 0; */
-}
+
 .welcome {
   font-size: 25px;
   /* font-weight: 700; */

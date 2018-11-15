@@ -114,7 +114,7 @@ export default class Login extends Component {
               <input onChange={e => this.updatePassword(e)} type="text" />
             </p>
           </div>
-          <div className="buttons">
+          <div className="register-buttons">
             <button onClick={() => this.regToggle()}>CANCEL</button>
             <button onClick={() => this.signup()}>SIGNUP</button>
           </div>

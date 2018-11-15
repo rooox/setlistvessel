@@ -8,3 +8,54 @@
   background-color: black;
   /* background-color: #363636; */
 }
+
+.viewsets {
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  opacity: 80;
+  height: 600px;
+  width: 400px;
+  background-color: black;
+  border-style: outset;
+  border-width: 10px;
+  border-color: rgb(134, 130, 130);
+  /* color: whitesmoke; */
+  color: black;
+  border-spacing: 4px;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.6);
+  font-family: "Cinzel", serif, bold;
+  font-weight: 400;
+  font-size: 21px;
+  margin: 10px;
+}
+
+.editpencil {
+  width: 20px;
+}
+
+.yoursets {
+  font-size: 40px;
+  font-weight: 700;
+  color: #b89130;
+}
+
+.set {
+  display: flex;
+  width: 275px;
+  height: 50px;
+  align-items: center;
+  justify-content: center;
+  border-style: solid;
+  border-color: rgb(71, 70, 70);
+  border-width: 3px;
+  margin: 8px 4px;
+  background-color: rgb(121, 116, 116);
+  font-size: 33px;
+  font-weight: 200;
+  font-family: "PT Serif", serif;
+}

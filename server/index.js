@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const massive = require("massive");
 const bodyParser = require("body-parser");
-// const ctrl = require("./controller/controller");
+const ctrl = require("./controller/controller");
 const authCtrl = require("./authController");
 const session = require("express-session");
 
@@ -32,6 +32,8 @@ app.post("/auth/register", authCtrl.register);
 app.post("/auth/login", authCtrl.login);
 app.get("/auth/logout", authCtrl.logout);
 app.get("/api/user/data", authCtrl.userData);
+app.get("/api/sets", ctrl.getSets);
+app.get("/api/songs", ctrl.getSongs);
 
 app.listen(PORT, () => {
   console.log(`The vessel is docked at port ${PORT}`);

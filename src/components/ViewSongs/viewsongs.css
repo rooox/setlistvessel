@@ -8,3 +8,119 @@
   background-color: black;
   /* background-color: #363636; */
 }
+
+.viewsongs {
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  opacity: 80;
+  height: 600px;
+  width: 400px;
+  background-color: black;
+  border-style: outset;
+  border-width: 10px;
+  border-color: rgb(134, 130, 130);
+  /* color: whitesmoke; */
+  color: black;
+  border-spacing: 4px;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.6);
+  font-family: "Cinzel", serif, bold;
+  font-weight: 400;
+  font-size: 21px;
+  margin: 10px;
+}
+
+.editpencil {
+  width: 20px;
+}
+
+.yoursongs {
+  font-size: 40px;
+  font-weight: 700;
+  color: #b89130;
+}
+
+.song {
+  display: flex;
+  width: 350px;
+  height: 50px;
+  align-items: center;
+  /* justify-content: center; */
+  flex-direction: column;
+  border-style: solid;
+  border-color: rgb(71, 70, 70);
+  border-width: 3px;
+  margin: 8px 4px;
+  background-color: rgb(121, 116, 116);
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "PT Serif", serif;
+}
+
+.key-title {
+  display: flex;
+  font-size: 25px;
+  margin: 0 7px;
+}
+.tuning-chords {
+  display: flex;
+  font-style: italic;
+}
+h5 {
+  margin: 0 20px;
+}
+.displaysong {
+  margin: 0 7px;
+}
+
+.addsong--container {
+  background-color: rgb(109, 107, 107);
+  margin: 7px 45px;
+  padding: 15px;
+  height: 83vh;
+  width: 662px;
+  border-style: outset;
+  border-width: 5px;
+  border-color: rgb(134, 130, 130);
+  border-spacing: 4px;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.6);
+  font-family: "PT Serif", serif;
+  font-style: italic;
+  font-size: 19px;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+textarea {
+  background-color: black;
+  width: 100%;
+  height: 70%;
+  margin: 5px;
+  font-family: "PT Serif", serif;
+  font-size: 17px;
+  color: rgb(233, 223, 223);
+  padding-left: 7px;
+}
+
+.addsong-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 5px 5px 5px 5px;
+}
+
+input {
+  margin: 5px;
+
+  /* font-family: "PT Serif", serif; */
+}
+
+/* .addsong--inputs {
+  /* margin-top: 8px; */

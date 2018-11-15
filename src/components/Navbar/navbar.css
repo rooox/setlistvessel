@@ -20,8 +20,24 @@ header {
     height: 7vh;
     margin: 8px 12px 0 2px;
     /* padding-top: 12px; */
+.slogo--nav {
+  height: 7vh;
+  margin: 8px 12px 0 18px;
+  /* padding-top: 12px; */
+}
+.links {
+  display: none;
+}
+.hamburger--container {
+  position: absolute;
+  right: 0;
+  margin: 15px 5px 0 0;
+}
+.hamburger {
+  width: 60px;
+}
 
-@media (min-width: 800px) {
+@media (min-width: 500px) {
   .logo {
     height: 10vh;
     margin: 8px 12px 0 18px;
@@ -29,17 +45,32 @@ header {
   }
 }
 
-.slogo--nav {
-  height: 7vh;
-  margin: 8px 12px 0 18px;
-  /* padding-top: 12px; */
+@media (min-width: 700px) {
+  .slogo--nav {
+    display: none;
+  }
+  .logo--nav {
+    height: 7vh;
+    margin: 8px 12px 0 18px;
+    /* padding-top: 12px; */
+  }
 }
-.links {
-  display: flex;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  align-items: center;
-  justify-content: flex-end;
-  color: #b89130;
+
+@media (min-width: 900px) {
+}
+
+@media (min-width: 1200px) {
+  .links {
+    display: flex;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    align-items: center;
+    justify-content: flex-end;
+    color: #b89130;
+  }
+
+  .hamburger--container {
+    display: none;
+  }
 }
 
 button {

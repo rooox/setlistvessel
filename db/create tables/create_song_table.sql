@@ -1,0 +1,8 @@
+CREATE TABLE song (
+id SERIAL PRIMARY KEY,
+key VARCHAR(10),
+title VARCHAR(60),
+tuning VARCHAR(60),
+chords VARCHAR(60),
+lyrics VARCHAR(1000),
+user_id INTEGER REFERENCES users)
