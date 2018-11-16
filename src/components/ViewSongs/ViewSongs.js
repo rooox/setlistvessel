@@ -4,8 +4,9 @@ import "../reset.css";
 import axios from "axios";
 import expand from "./Expand.svg";
 import AddSong from "../AddSong/AddSong";
+import { connect } from "react-redux";
 
-export default class ViewSongs extends Component {
+class ViewSongs extends Component {
   constructor() {
     super();
 
@@ -14,9 +15,10 @@ export default class ViewSongs extends Component {
       filterSongs: "",
       addSong: false
     };
+    this.componentDidMount = this.componentDidMount.bind(this);
   }
   componentDidMount() {
-    axios.get("/api/songs").then(res => {
+    axios.get(`/api/songs/${this.props.user.id}`).then(res => {
       this.setState({
         songs: res.data
       });
@@ -75,53 +77,6 @@ export default class ViewSongs extends Component {
           );
         });
     }
-    // = this.state.songs.map(song => {
-    // if (song.title === this.state.filterSongs) {
-    // if (song.includes(this.state.filterSongs)) {
-    // let songsTitleSplit = this.state.songs.map(song => {
-    //   this.setState({
-    //     songs: [
-    //       {
-    //         title: song.title.split(""),
-    //         key: song.key,
-    //         tuning: song.tuning,
-    //         chords: song.chords
-    //       }
-    //     ]
-    //   });
-    //   console.log("song title split:", songsTitleSplit);
-    // });
-    //   );
-
-    //   console.log("song title split:", songsTitleSplit);
-    // }
-
-    // if (songsTitleSplit === this.state.filterSongs){
-    //   return (
-    //     <div className="song" key={song.id}>
-    //       <div className="key-title">
-    //         <h5>{song.key}</h5>
-    //         <h5> | </h5>
-    //         <h5>{song.title}</h5>
-    //       </div>
-    //       <div className="tuning-chords">
-    //         <h5>{song.tuning}</h5>
-    //         <h5> | </h5>
-    //         <h5>{song.chords}</h5>
-    //       </div>
-
-    /* <img src={editPencil} className="editpencil" alt="edit" /> */
-
-    //   </div>
-    // );
-
-    // let songsToDisplay = this.state.songs
-    //   .filter((element, index) => {
-    //     return element.includes(this.state.filterString);
-    //   })
-    //   .map((element, index) => {
-    //     return <h2 key={index}>{element}</h2>;
-    //   });
 
     return this.state.addSong ? (
       <div className="background">
@@ -129,14 +84,17 @@ export default class ViewSongs extends Component {
           <h4 className="yoursongs">Your Songs</h4>
           <input
             onChange={e => this.handleSearch(e.target.value)}
-            placeholder="Search for a song..."
+            placeholder="Search for a song by title..."
             style={{ width: "90%" }}
           />
           <div className="song--container" />
           <div className="displaysong">{displaySongs}</div>
-          {/* <div className="displaysong">{songsToDisplay}</div> */}
         </div>
-        <AddSong createSongToggle={this.createSongToggle} />
+        <AddSong
+          componentDidMount={this.componentDidMount}
+          songs={this.state.songs}
+          createSongToggle={this.createSongToggle}
+        />
       </div>
     ) : (
       <div className="background">
@@ -155,3 +113,10 @@ export default class ViewSongs extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  // map redux state to component props
+  return state;
+}
+
+export default connect(mapStateToProps)(ViewSongs);

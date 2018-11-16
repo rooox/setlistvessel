@@ -6,7 +6,7 @@ const ctrl = require("./controller/controller");
 const authCtrl = require("./authController");
 const session = require("express-session");
 
-const { PORT, CONNECTION_STRING, SECRET } = process.env;
+const { PORT, CONNECTION_STRING, SECRET, NODE_ENV } = process.env;
 
 const app = express();
 
@@ -28,12 +28,28 @@ massive(CONNECTION_STRING)
     console.log(err);
   });
 
+app.use(async (req, res, next) => {
+  if (NODE_ENV === "development") {
+    let db = req.app.get("db");
+    let results = await db.user_check("roen@gmail.com");
+    req.session.user = {
+      id: results[0].id,
+      username: results[0].user_username,
+      email: results[0].user_email,
+      firstname: results[0].first_name,
+      lastname: results[0].last_name,
+      phone: results[0].phone
+    };
+  }
+  next();
+});
 app.post("/auth/register", authCtrl.register);
 app.post("/auth/login", authCtrl.login);
 app.get("/auth/logout", authCtrl.logout);
 app.get("/api/user/data", authCtrl.userData);
-app.get("/api/sets", ctrl.getSets);
-app.get("/api/songs", ctrl.getSongs);
+app.get("/api/sets/:id", ctrl.getSets);
+app.get("/api/songs/:id", ctrl.getSongs);
+app.post("/api/songs/", ctrl.addSong);
 
 app.listen(PORT, () => {
   console.log(`The vessel is docked at port ${PORT}`);

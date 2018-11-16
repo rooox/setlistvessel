@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import "./viewsets.css";
 import axios from "axios";
+import { connect } from "react-redux";
+import { updateUser } from "./../../dux/reducer";
 // import editPencil from "./editpencil.svg";
 
-export default class ViewSets extends Component {
+class ViewSets extends Component {
   constructor() {
     super();
 
@@ -11,13 +13,11 @@ export default class ViewSets extends Component {
       sets: []
     };
   }
-  componentDidMount() {
-    axios.get("/api/sets").then(res => {
-      this.setState({
-        sets: res.data
-      });
-      console.log("in component did mount", this.state.sets);
-    });
+  async componentDidMount() {
+    console.log(this.props.user);
+    let sets = await axios.get(`/api/sets/${this.props.user.id}`);
+    this.setState({ sets: sets.data });
+    console.log("in component did mount", this.state.sets);
   }
 
   render() {
@@ -41,3 +41,13 @@ export default class ViewSets extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  // map redux state to component props
+  return state;
+}
+
+export default connect(
+  mapStateToProps,
+  { updateUser }
+)(ViewSets);

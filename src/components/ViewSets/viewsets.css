@@ -59,3 +59,18 @@
   font-weight: 200;
   font-family: "PT Serif", serif;
 }
+.set:hover {
+  display: flex;
+  width: 285px;
+  height: 60px;
+  align-items: center;
+  justify-content: center;
+  border-style: solid;
+  border-color: rgb(71, 70, 70);
+  border-width: 3px;
+  margin: 8px 4px;
+  background-color: rgb(121, 116, 116);
+  font-size: 33px;
+  font-weight: 200;
+  font-family: "PT Serif", serif;
+}

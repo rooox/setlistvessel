@@ -46,11 +46,14 @@ export default class Navbar extends Component {
           <Link to="/songs">
             <button>SONGS</button>
           </Link>
-          <Link to="/about">
+          {/* <Link to="/about">
             <button>ABOUT</button>
           </Link>
           <Link to="/profile">
             <button>PROFILE</button>
+          </Link> */}
+          <Link to="/">
+            <button>Login</button>
           </Link>
           <Link to="/goodbye">
             <button className="logout--button" onClick={() => this.logout()}>
