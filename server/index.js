@@ -48,8 +48,10 @@ app.post("/auth/login", authCtrl.login);
 app.get("/auth/logout", authCtrl.logout);
 app.get("/api/user/data", authCtrl.userData);
 app.get("/api/sets/:id", ctrl.getSets);
+app.get("/api/set/:id", ctrl.getSet);
 app.get("/api/songs/:id", ctrl.getSongs);
 app.post("/api/songs/", ctrl.addSong);
+app.put("/api/song", ctrl.updateSong);
 
 app.listen(PORT, () => {
   console.log(`The vessel is docked at port ${PORT}`);

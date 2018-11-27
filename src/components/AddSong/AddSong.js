@@ -31,10 +31,14 @@ class AddSong extends Component {
     this.setState({ lyrics: val });
   }
 
+  clearSong = () => {
+    document.getElementById("create-song").reset();
+  };
+
   async addSong() {
     let newSong = {
       id: this.props.user.id,
-      title: this.state.title,
+      song_title: this.state.title,
       key: this.state.key,
       tuning: this.state.tuning,
       chords: this.state.chords,
@@ -43,6 +47,7 @@ class AddSong extends Component {
     await axios.post(`/api/songs/`, { newSong });
     this.props.songs.push(newSong);
     this.props.componentDidMount();
+    // this.clearSong();
     console.log({ newSong });
     console.log(this.props.songs);
   }
@@ -50,7 +55,7 @@ class AddSong extends Component {
   render() {
     console.log(this.state);
     return (
-      <div className="addsong--container">
+      <form id="create-song" className="addsong--container">
         {/* <div className="addsong--inputs"> */}
         <h4>Title:</h4>
         <input
@@ -78,16 +83,17 @@ class AddSong extends Component {
         />
         <h4>Lyrics:</h4>
         <textarea
+          className="lyric-input"
           style={{ resize: "none" }}
           onChange={e => this.handleLyricsInput(e.target.value)}
           placeholder="Enter lyrics..."
         />
         {/* </div> */}
         <div className="addsong-buttons">
-          <button onClick={() => this.props.createSongToggle()}>Cancel</button>
+          <button onClick={() => this.props.cancelAddSong()}>Cancel</button>
           <button onClick={() => this.addSong()}>Add Song</button>
         </div>
-      </div>
+      </form>
     );
   }
 }

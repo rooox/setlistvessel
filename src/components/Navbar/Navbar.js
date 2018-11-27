@@ -23,17 +23,18 @@ export default class Navbar extends Component {
   render() {
     return (
       <header>
-        <div className="logo--container">
+        <div className="logo--container slogo">
           <img src={slogo} className="slogo--nav" alt="Setlist Vessel" />
         </div>
         <div className="logo--container">
           <img src={logo} className="logo--nav" alt="Setlist Vessel" />
         </div>
         <div className="hamburger--container">
+          return displayMenu ? ( )
           <img
             src={hamburger}
             className="hamburger"
-            onClick={e => this.toggleMenu(e.target.value)}
+            onClick={this.props.toggleMenu}
           />
         </div>
         <div className="links">

@@ -1,15 +1,4 @@
-.background {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 86vh;
-  /* padding: 1rem; */
-  background: url(../Navbar/ocean2.jpg);
-  background-color: black;
-  /* background-color: #363636; */
-}
-
-.viewset--container {
+.addset--container {
   display: flex;
   flex-direction: column;
   display: flex;
@@ -32,10 +21,12 @@
   font-weight: 400;
   font-size: 21px;
   margin: 10px;
-  position: relative;
 }
 
-.viewset-title {
+.addsongtoset {
+  display: flex;
+}
+.addset--settitle {
   font-size: 40px;
   font-weight: 700;
   color: #b89130;
@@ -47,14 +38,10 @@
   max-width: 352px;
 }
 
-.viewset-songs {
+.addset-songs {
   border-style: solid;
   border-width: 1px 0;
   border-color: grey;
   height: 648px;
   margin: 12px 0;
-}
-.viewset-addsongs-button {
-  width: 100px;
-  height: 38px;
 }

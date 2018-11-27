@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import "./login.css";
 import "../reset.css";
-import logo from "./SVL.svg";
+import logo from "./YSL.svg";
+// import logo from "../Navbar/shipp.svg";
 import { updateUser } from "./../../dux/reducer";
 import { connect } from "react-redux";
 
@@ -124,29 +125,51 @@ class Login extends Component {
           <div className="inputs">
             <p>
               Username*:{" "}
-              <input onChange={e => this.updateUsername(e)} type="text" />
+              <input
+                onChange={e => this.updateUsername(e)}
+                type="text"
+                // placeholder="type here..."
+              />
             </p>
             <p>
-              Email*: <input onChange={e => this.updateEmail(e)} type="email" />
+              Email*:{" "}
+              <input
+                onChange={e => this.updateEmail(e)}
+                type="email"
+                // placeholder="type here..."
+              />
             </p>
             <p>
               Password*:{" "}
-              <input onChange={e => this.updatePassword(e)} type="password" />
+              <input
+                onChange={e => this.updatePassword(e)}
+                type="password"
+                // placeholder="type here..."
+              />
             </p>
             <p>
               First name*:{" "}
               <input
                 onChange={e => this.updateFirstname(e)}
                 type="text"
-                placeholder="type here..."
+                // placeholder="type here..."
               />
             </p>
             <p>
               Last name:{" "}
-              <input onChange={e => this.updateLastname(e)} type="text" />
+              <input
+                onChange={e => this.updateLastname(e)}
+                type="text"
+                // placeholder="type here..."
+              />
             </p>
             <p>
-              Phone: <input onChange={e => this.updatePhone(e)} type="text" />
+              Phone:{" "}
+              <input
+                onChange={e => this.updatePhone(e)}
+                type="text"
+                // placeholder="type here..."
+              />
             </p>
           </div>
           <div className="register-buttons">

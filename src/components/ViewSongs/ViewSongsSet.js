@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import "./viewsongs.css";
 import "../reset.css";
 import axios from "axios";
-import expand from "./Expand.svg";
+// import expand from "./Expand.svg";
 import AddSong from "../AddSong/AddSong";
 import ViewSong from "../ViewSong/ViewSong";
 import { connect } from "react-redux";
 
-class ViewSongs extends Component {
+class ViewSongsSet extends Component {
   constructor() {
     super();
 
@@ -30,28 +30,9 @@ class ViewSongs extends Component {
     });
   }
 
-  // getSongs() {
-  //   axios.get(`/api/songs/${this.props.user.id}`).then(res => {
-  //     this.setState({
-  //       songs: res.data
-  //     });
-  //     console.log("in component did mount", this.state.songs);
-  //   });
-  // }
-
   createSongToggle = () => {
-    this.setState({ addSong: true, viewSong: false, editMode: false });
-    console.log("this is create song toggle");
-  };
-
-  cancelEditSong = () => {
-    this.setState({ addSong: false, editMode: false, viewSong: true });
-    console.log("this is cancel edit");
-  };
-
-  cancelAddSong = () => {
-    this.setState({ addSong: false, editMode: false, viewSong: false });
-    console.log("add song:", this.state.addSong);
+    this.setState({ addSong: !this.state.addSong, viewSong: false });
+    console.log(this.state.addSong);
   };
 
   viewSongToggle = song => {
@@ -61,13 +42,16 @@ class ViewSongs extends Component {
       addSong: false,
       editMode: false
     });
-    console.log("selected song: ", song);
+    console.log(this.state.viewSong);
+  };
+
+  addSongCancel = () => {
+    this.setState({ addSong: false });
   };
 
   editSongToggle = () => {
     this.setState({ editMode: true });
   };
-
   handleSearch(filter) {
     this.setState({ filterSongs: filter });
   }
@@ -86,7 +70,7 @@ class ViewSongs extends Component {
             <div className="key-title">
               <h5>{song.key}</h5>
               <h5 className="verticalbar"> | </h5>
-              <h5 className="key-title-song-title">{song.song_title}</h5>
+              <h5 className="key-title-song-title">{song.title}</h5>
             </div>
             <div className="tuning-chords">
               <h5>{song.tuning}</h5>
@@ -106,14 +90,15 @@ class ViewSongs extends Component {
         .map(song => {
           return (
             <div
-              onClick={() => this.viewSongToggle(song)}
+              onClick={() => this.viewSongToggle()}
+              // onClick={() => this.handleSongClick(song)}
               className="song"
               key={song.id}
             >
               <div className="key-title">
                 <h5>{song.key}</h5>
                 <h5> | </h5>
-                <h5>{song.song_title}</h5>
+                <h5>{song.title}</h5>
               </div>
               <div className="tuning-chords">
                 <h5>{song.tuning}</h5>
@@ -142,50 +127,44 @@ class ViewSongs extends Component {
             componentDidMount={this.componentDidMount}
             songs={this.state.songs}
             createSongToggle={this.createSongToggle}
-            cancelAddSong={this.cancelAddSong}
           />
         </div>
       ) : (
         <div>
           {" "}
-          <div className="background">
-            <div className="viewsongs">
-              <h4 className="yoursongs">Your Songs</h4>
-              <input
-                onChange={e => this.handleSearch(e.target.value)}
-                placeholder="Search for a song by title..."
-                style={{ width: "90%" }}
-              />
-              <div className="song--container" />
-              <div className="displaysong">{displaySongs}</div>
-              <button onClick={() => this.createSongToggle()}>Add Song</button>
-            </div>
-            <ViewSong
-              componentDidMount={this.componentDidMount}
-              songs={this.state.songs}
-              createSongToggle={this.createSongToggle}
-              selectedSong={this.state.selectedSong}
-              editSongToggle={this.editSongToggle}
-              editMode={this.state.editMode}
-              cancelEditSong={this.cancelEditSong}
-              getSongs={this.getSongs}
+          <div className="viewsongs">
+            <h4 className="yoursongs">Your Songs</h4>
+            <input
+              onChange={e => this.handleSearch(e.target.value)}
+              placeholder="Search for a song by title..."
+              style={{ width: "90%" }}
             />
+            <div className="song--container" />
+            <div className="displaysong">{displaySongs}</div>
+            <button onClick={() => this.createSongToggle()}>New Song</button>
           </div>
+          <ViewSong
+            componentDidMount={this.componentDidMount}
+            songs={this.state.songs}
+            createSongToggle={this.createSongToggle}
+            selectedSong={this.state.selectedSong}
+            editSongToggle={this.editSongToggle}
+            editMode={this.state.editMode}
+          />
         </div>
       )
     ) : (
-      <div className="background">
-        <div className="viewsongs">
-          <h4 className="yoursongs">Your Songs</h4>
-          <input
-            onChange={e => this.handleSearch(e.target.value)}
-            placeholder="Search for a song..."
-            style={{ width: "90%" }}
-          />
-          <div className="song--container" />
-          <div className="displaysong">{displaySongs}</div>
-          <button onClick={() => this.createSongToggle()}>Add Song</button>
-        </div>
+      <div className="viewsongs">
+        <h4 className="yoursongs">Your Songs</h4>
+        <input
+          onChange={e => this.handleSearch(e.target.value)}
+          placeholder="Search for a song..."
+          style={{ width: "90%" }}
+        />
+        <div className="song--container" />
+        <div className="displaysong">{displaySongs}</div>
+        <button onClick={() => this.createSongToggle()}>New Song</button>
+        <button onClick={() => this.addSongCancel()}>Cancel</button>
       </div>
     );
   }
@@ -196,4 +175,4 @@ function mapStateToProps(state) {
   return state;
 }
 
-export default connect(mapStateToProps)(ViewSongs);
+export default connect(mapStateToProps)(ViewSongsSet);

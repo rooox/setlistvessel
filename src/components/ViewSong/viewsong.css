@@ -1,10 +1,98 @@
-.background {
+/* .background {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 86vh;
   /* padding: 1rem; */
-  background: url(../Navbar/ocean2.jpg);
-  background-color: black;
-  /* background-color: #363636; */
+/* background: url(../Navbar/ocean2.jpg);
+  background-color: black; */
+/* background-color: #363636; */
+/* */
+
+.viewsong--container {
+  background-color: rgb(31, 30, 30);
+  margin: 7px 45px;
+  padding: 15px;
+  height: 83vh;
+  width: 662px;
+  border-style: outset;
+  border-width: 5px;
+  border-color: rgb(134, 130, 130);
+  border-spacing: 4px;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.6);
+  font-family: "PT Serif", serif;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 19px;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.pencil {
+  width: 36px;
+  position: absolute;
+  overflow: hidden;
+  top: 13px;
+  right: 0px;
+}
+
+.viewsong-title {
+  text-align: center;
+  color: whitesmoke;
+  font-style: normal;
+  font-weight: normal;
+  margin: 7px;
+  font-size: 30px;
+  margin: 0 0 13px 0;
+}
+.viewsong-key {
+  text-align: center;
+  font-size: 15px;
+  color: whitesmoke;
+  font-style: italic;
+  font-weight: normal;
+  margin: 7px 10px;
+}
+.viewsong-tuning {
+  text-align: center;
+  font-size: 15px;
+  color: whitesmoke;
+  font-style: italic;
+  font-weight: normal;
+  margin: 7px 10px;
+}
+.viewsong-chords {
+  text-align: center;
+  font-size: 15px;
+  color: whitesmoke;
+  font-style: italic;
+  font-weight: normal;
+  margin: 7px 10px;
+}
+.viewsong-lyrics {
+  text-align: center;
+  font-size: 18px;
+  color: whitesmoke;
+  font-style: normal;
+  font-weight: normal;
+  margin: 7px;
+  white-space: pre-line;
+  overflow: scroll;
+  height: 574px;
+  border-style: solid;
+  border-color: rgb(134, 130, 130);
+  border-width: 0 0 0.5px 0;
+  height: 70vh;
+}
+
+.viewsong-details {
+  display: flex;
+  justify-content: center;
+  align-content: space-around;
+  margin: 7px;
+  border-style: solid;
+  border-color: rgb(134, 130, 130);
+  border-width: 0.5px 0;
 }

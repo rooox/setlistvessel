@@ -6,6 +6,7 @@
 }
 header {
   display: flex;
+  justify-content: space-between;
   width: 100vw;
   height: 10vh;
   background-color: black;
@@ -46,9 +47,10 @@ header {
 }
 
 @media (min-width: 700px) {
-  .slogo--nav {
+  .logo--container.slogo {
     display: none;
   }
+
   .logo--nav {
     height: 7vh;
     margin: 8px 12px 0 18px;
