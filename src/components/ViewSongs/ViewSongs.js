@@ -22,11 +22,14 @@ class ViewSongs extends Component {
     this.componentDidMount = this.componentDidMount.bind(this);
   }
   componentDidMount() {
+    console.log(this.props.user.id);
     axios.get(`/api/songs/${this.props.user.id}`).then(res => {
+      console.log("hitting promise");
+      console.log(res.data);
       this.setState({
         songs: res.data
       });
-      console.log("in component did mount", this.state.songs);
+      // console.log("in component did mount", this.state.songs);
     });
   }
 
@@ -73,6 +76,8 @@ class ViewSongs extends Component {
   }
 
   render() {
+    console.log("state.songs:", this.state.songs);
+    console.log("user id:", this.props.user.id);
     let displaySongs;
     if (!this.state.filterSongs) {
       displaySongs = this.state.songs

@@ -2,6 +2,7 @@ module.exports = {
   async getSets(req, res) {
     let db = req.app.get("db");
     let id = req.session.user.id;
+    console.log("id:", id);
     let results = await db.set.get_sets(id);
     res.status(200).send(results);
   },
@@ -14,9 +15,11 @@ module.exports = {
   },
 
   async getSongs(req, res) {
+    console.log("string");
     let db = req.app.get("db");
     let id = req.session.user.id;
     let results = await db.song.get_songs(id);
+    console.log(results);
     res.status(200).send(results);
   },
 

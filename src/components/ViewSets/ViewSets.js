@@ -67,6 +67,7 @@ class ViewSets extends Component {
   };
 
   render() {
+    console.log("sets", this.state.sets);
     // console.log("in render:", this.state.sets);
     let displaySets = this.state.sets
       // .sort(function(a, b) {
