@@ -11,6 +11,7 @@ class AddSet extends Component {
 
     this.state = {
       title: "",
+      setSongs: [],
       addSongMode: false
     };
   }
@@ -56,6 +57,14 @@ class AddSet extends Component {
           <div className="addset-songs">
             <p>Songs</p>
           </div>
+          <div style={{ display: "flex", height: "85px" }}>
+            <div className="addset-buttons">
+              <button onClick={() => this.props.createSetToggle()}>
+                Cancel
+              </button>
+              <button onClick={() => this.addSet()}>Save Set</button>
+            </div>
+          </div>
         </form>
         <div>
           <ViewSongsSet />
@@ -73,10 +82,12 @@ class AddSet extends Component {
         <div className="addset-songs">
           <p>Songs</p>
         </div>
-        <button onClick={this.addSongToggle}>Add Song</button>
-        <div className="addset-buttons">
-          <button onClick={() => this.props.createSetToggle()}>Cancel</button>
-          <button onClick={() => this.addSet()}>Save Set</button>
+        <div style={{ display: "flex", height: "85px" }}>
+          <button onClick={this.addSongToggle}>Add Song</button>
+          <div className="addset-buttons">
+            <button onClick={() => this.props.createSetToggle()}>Cancel</button>
+            <button onClick={() => this.addSet()}>Save Set</button>
+          </div>
         </div>
       </form>
     );

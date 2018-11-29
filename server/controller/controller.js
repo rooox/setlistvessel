@@ -46,6 +46,37 @@ module.exports = {
       lyrics
     ]);
     res.status(200).send(console.log(updatedSong));
+  },
+
+  async deleteSong(req, res) {
+    let db = req.app.get("db");
+    let id = req.params.id;
+    await db.song.delete_song(id);
+    res.sendStatus(200);
+    console.log("delete song run");
+  },
+
+  async deleteSetSong(req, res) {
+    let db = req.app.get("db");
+    let song_id = req.params.song_id;
+    let set_id = req.params.set_id;
+    await db.set.delete_set_song([song_id, set_id]);
+    res.sendStatus(200);
+  },
+
+  async addSetSong(req, res) {
+    let db = req.app.get("db");
+    let song_id = req.params.song_id;
+    let set_id = req.params.set_id;
+    await db.set.add_set_song([song_id, set_id]);
+    res.sendStatus(200);
+  },
+
+  async deleteSet(req, res) {
+    let db = req.app.get("db");
+    let set_id = req.params.set_id;
+    await db.set.delete_set(set_id);
+    res.sendStatus(200);
   }
 };
 // async addGames(req, res) {

@@ -4,7 +4,7 @@ import "../reset.css";
 import axios from "axios";
 // import expand from "./Expand.svg";
 import AddSong from "../AddSong/AddSong";
-import ViewSong from "../ViewSong/ViewSong";
+// import ViewSong from "../ViewSong/ViewSong";
 import { connect } from "react-redux";
 
 class ViewSongsSet extends Component {
@@ -56,30 +56,50 @@ class ViewSongsSet extends Component {
     this.setState({ filterSongs: filter });
   }
 
+  async addSongToSet(id) {
+    axios.post(`api/setsong/${id}/${this.props.set_id}`);
+    console.log(id, this.props.set_id);
+    console.log("Song added to set!!");
+    // this.props.getSet(this.props.set_id);
+  }
+
   render() {
     let displaySongs;
     if (!this.state.filterSongs) {
-      displaySongs = this.state.songs.map(song => {
-        return (
-          <div
-            onClick={() => this.viewSongToggle(song)}
-            // onClick={() => this.handleSongClick(song)}
-            className="song"
-            key={song.id}
-          >
-            <div className="key-title">
-              <h5>{song.key}</h5>
-              <h5 className="verticalbar"> | </h5>
-              <h5 className="key-title-song-title">{song.title}</h5>
+      displaySongs = this.state.songs
+        .sort(function(a, b) {
+          var nameA = a.song_title.toUpperCase();
+          var nameB = b.song_title.toUpperCase();
+          if (nameA < nameB) {
+            return -1;
+          }
+          if (nameA > nameB) {
+            return 1;
+          }
+
+          return 0;
+        })
+        .map(song => {
+          return (
+            <div
+              onClick={() => this.addSongToSet(song.id)}
+              // onClick={() => this.handleSongClick(song)}
+              className="song"
+              key={song.id}
+            >
+              <div className="key-title">
+                <h5>{song.key}</h5>
+                <h5 className="verticalbar"> | </h5>
+                <h5 className="key-title-song-title">{song.song_title}</h5>
+              </div>
+              <div className="tuning-chords">
+                <h5>{song.tuning}</h5>
+                <h5 className="verticalbar"> | </h5>
+                <h5>{song.chords}</h5>
+              </div>
             </div>
-            <div className="tuning-chords">
-              <h5>{song.tuning}</h5>
-              <h5 className="verticalbar"> | </h5>
-              <h5>{song.chords}</h5>
-            </div>
-          </div>
-        );
-      });
+          );
+        });
     } else {
       displaySongs = this.state.songs
         .filter(song => {
@@ -90,7 +110,7 @@ class ViewSongsSet extends Component {
         .map(song => {
           return (
             <div
-              onClick={() => this.viewSongToggle()}
+              // onClick={() => this.viewSongToggle()}
               // onClick={() => this.handleSongClick(song)}
               className="song"
               key={song.id}
@@ -114,7 +134,7 @@ class ViewSongsSet extends Component {
       this.state.addSong ? (
         <div className="background">
           <div className="viewsongs">
-            <h4 className="yoursongs">Your Songs</h4>
+            <h4 className="yoursongs">Add A Song</h4>
             <input
               onChange={e => this.handleSearch(e.target.value)}
               placeholder="Search for a song by title..."
@@ -133,7 +153,7 @@ class ViewSongsSet extends Component {
         <div>
           {" "}
           <div className="viewsongs">
-            <h4 className="yoursongs">Your Songs</h4>
+            <h4 className="yoursongs">Add A Song</h4>
             <input
               onChange={e => this.handleSearch(e.target.value)}
               placeholder="Search for a song by title..."
@@ -143,19 +163,19 @@ class ViewSongsSet extends Component {
             <div className="displaysong">{displaySongs}</div>
             <button onClick={() => this.createSongToggle()}>New Song</button>
           </div>
-          <ViewSong
+          {/* <ViewSong
             componentDidMount={this.componentDidMount}
             songs={this.state.songs}
             createSongToggle={this.createSongToggle}
             selectedSong={this.state.selectedSong}
             editSongToggle={this.editSongToggle}
             editMode={this.state.editMode}
-          />
+          /> */}
         </div>
       )
     ) : (
       <div className="viewsongs">
-        <h4 className="yoursongs">Your Songs</h4>
+        <h4 className="yoursongs">Add A Song</h4>
         <input
           onChange={e => this.handleSearch(e.target.value)}
           placeholder="Search for a song..."
@@ -163,8 +183,10 @@ class ViewSongsSet extends Component {
         />
         <div className="song--container" />
         <div className="displaysong">{displaySongs}</div>
-        <button onClick={() => this.createSongToggle()}>New Song</button>
-        <button onClick={() => this.addSongCancel()}>Cancel</button>
+        <div style={{ display: "flex" }}>
+          <button onClick={() => this.createSongToggle()}>New Song</button>
+          {/* <button onClick={() => this.addSongCancel()}>Cancel</button> */}
+        </div>
       </div>
     );
   }

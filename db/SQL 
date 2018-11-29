@@ -1,0 +1,24 @@
+INSERT INTO set_song (set_id, song_id)
+VALUES(1,37),(1,49),(1,56),(1,57);
+
+INSERT INTO song (id, key, song_title, tuning, chords,	lyrics,	user_id)
+VALUES(1, 'D', 'The One That I Want', 'Std', 'Am - C - G - F - Em', 'Ive got chills. Theyre multiplying.And Im losing control.Cause the power Youre supplying Is electrifyin You better shape up, Cause you need a man And my heart is set on you. You better shape up, You better understand To my heart I must be true. Youre the one that I want, The one that I want, The one that I need. If youre feeling Some affection, Thats too hard to convey. Meditated, By direction. Baby feel your weight. You better shape up, Cause you need a man And my heart is set on you. You better shape up, You better understand To my heart I must be true. Youre the one that I want, The one that I want, The one that I want. The one that I need', 2),(2, 'E', 'Emmanuel/God Rest Ye Merry Gentlemen	', 'Std', 'Am - C - G - F - Em', 'O come, O come, Immanuel,
+and ransom captive Israel
+that mourns in lonely exile here
+until the Son of God appear.
+Refrain:
+Rejoice! Rejoice! Immanuel
+shall come to you, O Israel.
+
+God rest ye merry gentlemen
+Let nothing you dismay
+Remember Christ our Savior
+Was born on Christmas Day
+To save us all from Satan's pow'r
+When we were gone astray
+Oh tidings of comfort and joy
+Comfort and joy
+Oh tidings of comfort and joy
+
+Rejoice! Rejoice! Immanuel
+shall come to you, O Israel.', 2)

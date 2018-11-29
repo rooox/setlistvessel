@@ -45,6 +45,7 @@ export default class ViewSong extends Component {
 
   editSong() {
     this.setState({
+      id: this.props.selectedSong.id,
       song_title: this.props.selectedSong.song_title,
       key: this.props.selectedSong.key,
       tuning: this.props.selectedSong.tuning,
@@ -66,6 +67,13 @@ export default class ViewSong extends Component {
     };
     await axios.put(`api/song/`, { updatedSong }, console.log("Im hit"));
     this.props.cancelEditSong();
+    this.props.getSongs();
+  }
+
+  async deleteSong() {
+    await axios.delete(`api/song/${this.state.id}`);
+    this.props.cancelAddSong();
+    this.props.getSongs();
   }
 
   render() {
@@ -108,7 +116,12 @@ export default class ViewSong extends Component {
         <div className="addsong-buttons">
           <button onClick={() => this.props.cancelEditSong()}>Cancel</button>
           <button onClick={() => this.updateSong()}>Save</button>
-          <button style={{ borderColor: "red" }}>Delete</button>
+          <button
+            onClick={() => this.deleteSong()}
+            style={{ borderColor: "red" }}
+          >
+            Delete
+          </button>
         </div>
       </form>
     ) : (

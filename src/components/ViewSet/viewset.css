@@ -56,5 +56,32 @@
 }
 .viewset-addsongs-button {
   width: 100px;
-  height: 38px;
+  margin: -5px 7px 6px 0;
+  height: 25px;
+}
+
+.edit-set-input {
+  width: 92%;
+  margin-bottom: 2px;
+  margin-top: 7px;
+}
+
+.edit-set-title {
+  margin-bottom: -5px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.x {
+  height: 35px;
+  position: absolute;
+  right: 0px;
+  top: 2px;
+}
+
+.x:hover {
+  height: 37px;
+  position: absolute;
+  right: 1px;
+  top: 4px;
 }

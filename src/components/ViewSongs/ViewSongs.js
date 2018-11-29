@@ -30,14 +30,14 @@ class ViewSongs extends Component {
     });
   }
 
-  // getSongs() {
-  //   axios.get(`/api/songs/${this.props.user.id}`).then(res => {
-  //     this.setState({
-  //       songs: res.data
-  //     });
-  //     console.log("in component did mount", this.state.songs);
-  //   });
-  // }
+  getSongs = () => {
+    axios.get(`/api/songs/${this.props.user.id}`).then(res => {
+      this.setState({
+        songs: res.data
+      });
+      console.log("in component did mount", this.state.songs);
+    });
+  };
 
   createSongToggle = () => {
     this.setState({ addSong: true, viewSong: false, editMode: false });
@@ -75,31 +75,44 @@ class ViewSongs extends Component {
   render() {
     let displaySongs;
     if (!this.state.filterSongs) {
-      displaySongs = this.state.songs.map(song => {
-        return (
-          <div
-            onClick={() => this.viewSongToggle(song)}
-            // onClick={() => this.handleSongClick(song)}
-            className="song"
-            key={song.id}
-          >
-            <div className="key-title">
-              <h5>{song.key}</h5>
-              <h5 className="verticalbar"> | </h5>
-              <h5 className="key-title-song-title">{song.song_title}</h5>
+      displaySongs = this.state.songs
+        .sort(function(a, b) {
+          var nameA = a.song_title.toUpperCase();
+          var nameB = b.song_title.toUpperCase();
+          if (nameA < nameB) {
+            return -1;
+          }
+          if (nameA > nameB) {
+            return 1;
+          }
+
+          return 0;
+        })
+        .map(song => {
+          return (
+            <div
+              onClick={() => this.viewSongToggle(song)}
+              // onClick={() => this.handleSongClick(song)}
+              className="song"
+              key={song.id}
+            >
+              <div className="key-title">
+                <h5>{song.key}</h5>
+                <h5 className="verticalbar"> | </h5>
+                <h5 className="key-title-song-title">{song.song_title}</h5>
+              </div>
+              <div className="tuning-chords">
+                <h5>{song.tuning}</h5>
+                <h5 className="verticalbar"> | </h5>
+                <h5>{song.chords}</h5>
+              </div>
             </div>
-            <div className="tuning-chords">
-              <h5>{song.tuning}</h5>
-              <h5 className="verticalbar"> | </h5>
-              <h5>{song.chords}</h5>
-            </div>
-          </div>
-        );
-      });
+          );
+        });
     } else {
       displaySongs = this.state.songs
         .filter(song => {
-          return song.title
+          return song.song_title
             .toLowerCase()
             .includes(this.state.filterSongs.toLowerCase());
         })
@@ -107,17 +120,18 @@ class ViewSongs extends Component {
           return (
             <div
               onClick={() => this.viewSongToggle(song)}
+              // onClick={() => this.handleSongClick(song)}
               className="song"
               key={song.id}
             >
               <div className="key-title">
                 <h5>{song.key}</h5>
-                <h5> | </h5>
-                <h5>{song.song_title}</h5>
+                <h5 className="verticalbar"> | </h5>
+                <h5 className="key-title-song-title">{song.song_title}</h5>
               </div>
               <div className="tuning-chords">
                 <h5>{song.tuning}</h5>
-                <h5> | </h5>
+                <h5 className="verticalbar"> | </h5>
                 <h5>{song.chords}</h5>
               </div>
             </div>
@@ -169,6 +183,7 @@ class ViewSongs extends Component {
               editMode={this.state.editMode}
               cancelEditSong={this.cancelEditSong}
               getSongs={this.getSongs}
+              cancelAddSong={this.cancelAddSong}
             />
           </div>
         </div>

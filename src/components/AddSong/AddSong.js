@@ -37,7 +37,8 @@ class AddSong extends Component {
 
   async addSong() {
     let newSong = {
-      id: this.props.user.id,
+      id: 2,
+      // id: this.props.user.id,
       song_title: this.state.title,
       key: this.state.key,
       tuning: this.state.tuning,
@@ -47,6 +48,7 @@ class AddSong extends Component {
     await axios.post(`/api/songs/`, { newSong });
     this.props.songs.push(newSong);
     this.props.componentDidMount();
+    this.props.cancelAddSong();
     // this.clearSong();
     console.log({ newSong });
     console.log(this.props.songs);

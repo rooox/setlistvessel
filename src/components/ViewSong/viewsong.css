@@ -78,7 +78,7 @@
   font-style: normal;
   font-weight: normal;
   margin: 7px;
-  white-space: pre-line;
+  white-space: pre-wrap;
   overflow: scroll;
   height: 574px;
   border-style: solid;
