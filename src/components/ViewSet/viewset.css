@@ -53,6 +53,7 @@
   border-color: grey;
   height: 648px;
   margin: 12px 0;
+  overflow: scroll;
 }
 .viewset-addsongs-button {
   width: 100px;

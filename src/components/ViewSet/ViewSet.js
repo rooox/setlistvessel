@@ -116,6 +116,8 @@ export default class ViewSet extends Component {
           <ViewSongsSet
             set_id={this.props.selectedSet.id}
             getSet={this.props.getSet}
+            set={this.props.selectedSet}
+            setlist={this.props.setlist}
           />
         </div>
       </div>

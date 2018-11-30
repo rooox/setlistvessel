@@ -57,13 +57,18 @@ class ViewSongsSet extends Component {
   }
 
   async addSongToSet(id) {
-    axios.post(`api/setsong/${id}/${this.props.set_id}`);
-    console.log(id, this.props.set_id);
-    console.log("Song added to set!!");
+    this.props.setlist.filter(song => {
+      if (song.song_id === id) {
+        alert("Please select a song that is not currently in your set");
+      } else axios.post(`api/setsong/${id}/${this.props.set_id}`);
+      console.log(id, this.props.set_id);
+      console.log("Song added to set!!");
+    });
     // this.props.getSet(this.props.set_id);
   }
 
   render() {
+    console.log("setlist in vss", this.props.setlist);
     let displaySongs;
     if (!this.state.filterSongs) {
       displaySongs = this.state.songs

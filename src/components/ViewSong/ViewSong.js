@@ -11,7 +11,8 @@ export default class ViewSong extends Component {
     key: this.props.selectedSong.key,
     tuning: this.props.selectedSong.tuning,
     chords: this.props.selectedSong.chords,
-    lyrics: this.props.selectedSong.lyrics
+    lyrics: this.props.selectedSong.lyrics,
+    lightMode: false
     // editMode: false
   };
 
@@ -43,6 +44,9 @@ export default class ViewSong extends Component {
     this.setState({ lyrics: val });
   }
 
+  lightModeToggle() {
+    this.setState({ lightMode: !this.state.lightMode });
+  }
   editSong() {
     this.setState({
       id: this.props.selectedSong.id,
@@ -125,21 +129,80 @@ export default class ViewSong extends Component {
         </div>
       </form>
     ) : (
-      <div className="viewsong--container">
+      <div
+        className={
+          this.state.lightMode
+            ? "viewsong--container-light"
+            : "viewsong--container"
+        }
+      >
+        {/* <pre style={{ height: "10px" }} /> */}
         <img
           onClick={() => this.editSong()}
           className="pencil"
           src={editPencil}
         />
-        <h4 className="viewsong-title">{this.props.selectedSong.song_title}</h4>
-        <div className="viewsong-details">
-          <h4 className="viewsong-key">{this.props.selectedSong.key}</h4>
-          <h4 className="viewsong-key">|</h4>
-          <h4 className="viewsong-tuning">{this.props.selectedSong.tuning}</h4>
-          <h4 className="viewsong-key">|</h4>
-          <h4 className="viewsong-chords">{this.props.selectedSong.chords}</h4>
+        <button
+          onClick={() => this.lightModeToggle()}
+          className={this.state.lightMode ? "dark-button" : "light-button"}
+        >
+          {this.state.lightMode ? "DARK MODE" : "LIGHT MODE"}
+        </button>
+        <h4
+          className={
+            this.state.lightMode ? "viewsong-title-light" : "viewsong-title"
+          }
+        >
+          {this.props.selectedSong.song_title}
+        </h4>
+        <div
+          className={
+            this.state.lightMode ? "viewsong-details-light" : "viewsong-details"
+          }
+        >
+          <h4
+            className={
+              this.state.lightMode ? "viewsong-key-light" : "viewsong-key"
+            }
+          >
+            {this.props.selectedSong.key}
+          </h4>
+          <h4
+            className={
+              this.state.lightMode ? "viewsong-key-light" : "viewsong-key"
+            }
+          >
+            |
+          </h4>
+          <h4
+            className={
+              this.state.lightMode ? "viewsong-tuning-light" : "viewsong-tuning"
+            }
+          >
+            {this.props.selectedSong.tuning}
+          </h4>
+          <h4
+            className={
+              this.state.lightMode ? "viewsong-key-light" : "viewsong-key"
+            }
+          >
+            |
+          </h4>
+          <h4
+            className={
+              this.state.lightMode ? "viewsong-chords-light" : "viewsong-chords"
+            }
+          >
+            {this.props.selectedSong.chords}
+          </h4>
         </div>
-        <h4 className="viewsong-lyrics">{this.props.selectedSong.lyrics}</h4>
+        <h4
+          className={
+            this.state.lightMode ? "viewsong-lyrics-light" : "viewsong-lyrics"
+          }
+        >
+          {this.props.selectedSong.lyrics}
+        </h4>
       </div>
     );
   }
