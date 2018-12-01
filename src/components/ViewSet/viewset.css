@@ -76,13 +76,14 @@
 .x {
   height: 35px;
   position: absolute;
-  right: 0px;
-  top: 2px;
+  right: -2px;
+  top: 5px;
+  transition: all 0.5s;
 }
 
 .x:hover {
   height: 37px;
   position: absolute;
-  right: 1px;
+  right: -2px;
   top: 4px;
 }

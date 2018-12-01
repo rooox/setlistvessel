@@ -8,12 +8,35 @@ import x1 from "./x7d.svg";
 import ViewSongsSet from "../ViewSongs/ViewSongsSet";
 
 export default class ViewSet extends Component {
-  state = {
-    title: this.props.selectedSet.title,
-    addSongsMode: false,
-    setlist: []
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: this.props.selectedSet.title,
+      addSongsMode: false,
+      setlist: []
+    };
+  }
+  componentDidMount() {
+    axios.get(`/api/set/${this.props.selectedSet.id}`).then(res => {
+      this.setState({
+        setlist: res.data
+      });
+      console.log("Setlist id", this.props.selectedSet.id);
+      console.log("res.data", res.data);
+      console.log("Setlist", this.state.setlist);
+    });
+  }
 
+  getSet = () => {
+    axios.get(`/api/set/${this.props.selectedSet.id}`).then(res => {
+      this.setState({
+        setlist: res.data
+      });
+      // console.log("Setlist id", id);
+      console.log("res.data", res.data);
+      console.log("Setlist", this.state.setlist);
+    });
+  };
   handleTitleInput = val => {
     this.setState({ title: val });
   };
@@ -28,17 +51,19 @@ export default class ViewSet extends Component {
 
     console.log("ids=", song_id, set_id);
     await axios.delete(`api/setsong/${song_id}/${set_id}`);
+    this.getSet();
   }
 
   async deleteSet() {
     let set_id = this.props.selectedSet.id;
     console.log("ids=", set_id);
     await axios.delete(`api/set/${set_id}`);
+    this.props.deleteSongBacktrack();
   }
 
   render() {
     console.log(this.props.setlist);
-    let displaySet = this.props.setlist.map(set => {
+    let displaySet = this.state.setlist.map(set => {
       return (
         // <div className="viewset-songs" key={set.song_id}>
         <div className="song" key={set.song_id}>
@@ -56,7 +81,7 @@ export default class ViewSet extends Component {
         // </div>
       );
     });
-    let editDisplaySet = this.props.setlist.map(set => {
+    let editDisplaySet = this.state.setlist.map(set => {
       return (
         // <div className="viewset-songs" key={set.song_id}>
         <div
@@ -105,6 +130,7 @@ export default class ViewSet extends Component {
               Cancel
             </button>
             <button
+              onClick={() => this.deleteSet()}
               style={{ borderColor: "red" }}
               className="viewset-addsongs-button"
             >
@@ -115,7 +141,7 @@ export default class ViewSet extends Component {
         <div>
           <ViewSongsSet
             set_id={this.props.selectedSet.id}
-            getSet={this.props.getSet}
+            getSet={this.getSet}
             set={this.props.selectedSet}
             setlist={this.props.setlist}
           />

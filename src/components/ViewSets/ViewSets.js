@@ -27,16 +27,16 @@ class ViewSets extends Component {
     console.log("in component did mount", this.state.sets);
   }
 
-  getSet(id) {
-    axios.get(`/api/set/${id}`).then(res => {
-      this.setState({
-        setlist: res.data
-      });
-      console.log("Setlist id", id);
-      console.log("res.data", res.data);
-      console.log("Setlist", this.state.setlist);
-    });
-  }
+  // getSet(id) {
+  //   axios.get(`/api/set/${id}`).then(res => {
+  //     this.setState({
+  //       setlist: res.data
+  //     });
+  //     console.log("Setlist id", id);
+  //     console.log("res.data", res.data);
+  //     console.log("Setlist", this.state.setlist);
+  //   });
+  // }
 
   viewSetToggle = set => {
     this.setState({
@@ -45,7 +45,7 @@ class ViewSets extends Component {
       addSet: false,
       editMode: false
     });
-    this.getSet(set.id);
+    // this.getSet(set.id);
     console.log("view set", this.state.viewSet);
   };
 
@@ -61,6 +61,14 @@ class ViewSets extends Component {
   cancelEditSet = () => {
     this.setState({
       viewSet: true,
+      addSet: false,
+      editMode: false
+    });
+  };
+
+  deleteSetBacktrack = () => {
+    this.setState({
+      viewSet: false,
       addSet: false,
       editMode: false
     });
@@ -117,7 +125,8 @@ class ViewSets extends Component {
             cancelEditSet={this.cancelEditSet}
             viewSetToggle={this.viewSetToggle}
             state={this.state}
-            getSet={this.getSet}
+            deleteSetBacktrack={this.deleteSetBacktrack}
+            // getSet={this.getSet}
           />
         </div>
       )

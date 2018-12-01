@@ -1,2 +1,2 @@
-DELETE FROM song
+DELETE FROM set
 WHERE id = $1

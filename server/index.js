@@ -54,7 +54,7 @@ app.get("/api/set/:id", ctrl.getSet);
 app.get("/api/songs/:id", ctrl.getSongs);
 app.post("/api/songs/", ctrl.addSong);
 app.put("/api/song", ctrl.updateSong);
-app.delete("/api/set/:id", ctrl.deleteSet);
+app.delete("/api/set/:set_id", ctrl.deleteSet);
 app.delete("/api/song/:id", ctrl.deleteSong);
 app.post("/api/setsong/:song_id/:set_id", ctrl.addSetSong);
 app.delete("/api/setsong/:song_id/:set_id", ctrl.deleteSetSong);

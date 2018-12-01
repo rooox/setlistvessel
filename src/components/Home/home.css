@@ -3,10 +3,8 @@
   justify-content: center;
   align-items: center;
   height: 86vh;
-  /* padding: 1rem; */
   background: url(../Navbar/ocean2.jpg);
   background-color: black;
-  /* background-color: #363636; */
 }
 
 .sets_nav--container {
@@ -16,21 +14,7 @@
 }
 
 .sets_nav {
-  /* height: 250px;
-  width: 250px;
-  margin: 50px;
-  font-size: 65px;
-  color: black;
-  font-family: "Cinzel", serif;
-  background-color: #b89130;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 30px;
-  border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.6); */
-
+  transition: all 1s;
   height: 250px;
   width: 250px;
   margin: 50px;
@@ -49,28 +33,10 @@
   border-style: outset;
   border-width: 6px;
   border-color: rgb(134, 130, 130);
-  /* color: whitesmoke; */
-  /* border-spacing: 2px; */
   border-radius: 10px;
-  /* opacity: .5; */
 }
 
 .sets_nav:hover {
-  /* height: 250px;
-  width: 250px;
-  margin: 50px;
-  font-size: 65px;
-  color: black;
-  font-family: "Cinzel", serif;
-  background-color: #b89130;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 30px;
-  border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.6); */
-
   height: 275px;
   width: 275px;
   margin: 50px;
@@ -88,14 +54,9 @@
   border-style: outset;
   border-width: 8px;
   border-color: rgb(134, 130, 130);
-  /* color: whitesmoke; */
-  /* border-spacing: 2px; */
   border-radius: 10px;
-  /* opacity: .5; */
 }
 
 h4 {
   text-decoration: none;
 }
-
-/* opacity: .5; */

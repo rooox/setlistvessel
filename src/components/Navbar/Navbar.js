@@ -16,7 +16,7 @@ export default class Navbar extends Component {
     // this.props.history.push("./");
     console.log(res.data);
   }
-  toggleMenu(e) {
+  toggleMenu() {
     this.setState({ displayMenu: !this.state.displayMenu });
   }
 
@@ -34,7 +34,7 @@ export default class Navbar extends Component {
           <img
             src={hamburger}
             className="hamburger"
-            onClick={this.props.toggleMenu}
+            onClick={() => this.toggleMenu()}
           />
         </div>
         <div className="links">
@@ -61,6 +61,98 @@ export default class Navbar extends Component {
               Logout
             </button>
           </Link>
+        </div>
+        <div
+          className={
+            this.state.displayMenu
+              ? "dropdown-menu-open"
+              : "dropdown-menu-closed"
+          }
+        >
+          <div>
+            <Link to="/home">
+              <h4
+                className={
+                  this.state.displayMenu
+                    ? "dropdown-items-open"
+                    : "dropdown-items-closed"
+                }
+                onClick={() => this.toggleMenu()}
+              >
+                Home
+              </h4>
+            </Link>
+            <Link to="/sets">
+              <h4
+                className={
+                  this.state.displayMenu
+                    ? "dropdown-items-open"
+                    : "dropdown-items-closed"
+                }
+                onClick={() => this.toggleMenu()}
+              >
+                Sets
+              </h4>
+            </Link>
+            <Link to="/songs">
+              <h4
+                className={
+                  this.state.displayMenu
+                    ? "dropdown-items-open"
+                    : "dropdown-items-closed"
+                }
+                onClick={() => this.toggleMenu()}
+              >
+                Songs
+              </h4>
+            </Link>
+            <Link to="/about">
+              <h4
+                className={
+                  this.state.displayMenu
+                    ? "dropdown-items-open"
+                    : "dropdown-items-closed"
+                }
+                onClick={() => this.toggleMenu()}
+              >
+                About
+              </h4>
+            </Link>
+            <Link to="/profile">
+              <h4
+                className={
+                  this.state.displayMenu
+                    ? "dropdown-items-open"
+                    : "dropdown-items-closed"
+                }
+                onClick={() => this.toggleMenu()}
+              >
+                Profile
+              </h4>
+            </Link>
+            {/* <Link to="/">
+            <h4 className={
+                  this.state.displayMenu
+                    ? "dropdown-items-open"
+                    : "dropdown-items-closed"
+                } onClick={() => this.toggleMenu()}>
+              LOGIN
+            </h4>
+          </Link> */}
+            <Link to="/goodbye">
+              <h4
+                className={
+                  this.state.displayMenu
+                    ? "dropdown-items-open"
+                    : "dropdown-items-closed"
+                }
+                onClick={() => this.toggleMenu()}
+                onClick={() => this.logout()}
+              >
+                Logout
+              </h4>
+            </Link>
+          </div>
         </div>
       </header>
     );

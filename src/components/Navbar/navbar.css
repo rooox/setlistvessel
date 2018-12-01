@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Cinzel");
 @import url("https://fonts.googleapis.com/css?family=PT+Serif:400,400i");
-
+@import url("https://fonts.googleapis.com/css?family=Merriweather");
 * {
   box-sizing: border-box;
 }
@@ -8,7 +8,7 @@ header {
   display: flex;
   justify-content: space-between;
   width: 100vw;
-  height: 10vh;
+  height: 81.45px;
   background-color: black;
   border-style: solid;
   border-color: #b89130;
@@ -91,4 +91,87 @@ button {
   align-items: flex-end;
   justify-content: flex-end;
   background-color: darkgrey;
+}
+
+.dropdown-menu-closed {
+  /* background-color: grey;
+  width: 200px;
+  height: 297px;
+  position: absolute;
+  display: none;
+  right: 0;
+  top: -217px;
+  transition: all 5s;
+  border-bottom-left-radius: 5px; */
+  height: 0;
+  /* transition: 1.25s; */
+  transition: all 1s;
+  position: absolute;
+  height: 0px;
+  right: 0;
+  top: 82px;
+  width: 278px;
+  overflow: hidden;
+  background-color: black;
+}
+.dropdown-menu-open {
+  background-color: black;
+  width: 278px;
+  height: 345px;
+  position: absolute;
+  right: 0;
+  top: 82px;
+  transition: all 1s;
+  border-bottom-left-radius: 5px;
+  border-style: solid;
+  border-color: #b89130;
+  border-width: 0 0 1px 1px;
+}
+
+/* .dropdown-menu-open:hover {
+  background-color: #545454; */
+/* } */
+
+.dropdown-items-closed {
+  text-align: center;
+  /* height: 20px; */
+  /* position: absolute;
+  height: 0px;
+  right: 0;
+  top: 120px;
+  width: 270px; */
+  overflow: hidden;
+  font-style: none;
+  text-decoration: overline underline;
+  text-decoration-color: rgba(0, 0, 0, 1);
+  transition: all 2s;
+  border-width: 1px 0;
+  border-top-left-radius: 31px;
+  border-color: #b89130;
+}
+
+.dropdown-items-open {
+  text-align: center;
+  font-family: "Merriweather", serif;
+  background-color: black;
+  border: solid;
+  font-size: 24px;
+  padding: 16px;
+  text-decoration: overline underline;
+  text-decoration-color: rgba(0, 0, 0, 1);
+  border-width: 1px 0;
+  /* border-top-left-radius: 31px; */
+  border-radius: 8px;
+  transition: all 2s;
+}
+
+.dropdown-items-open:hover {
+  background-color: #353535;
+  transition: all 0.5s;
+  text-decoration: overline underline;
+  text-decoration-color: #353535;
+  /* color: black; */
+}
+h4 {
+  text-decoration: none;
 }
