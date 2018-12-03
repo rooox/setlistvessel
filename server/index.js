@@ -45,18 +45,27 @@ app.use(async (req, res, next) => {
   }
   next();
 });
+
+//AUTH
 app.post("/auth/register", authCtrl.register);
 app.post("/auth/login", authCtrl.login);
 app.get("/auth/logout", authCtrl.logout);
+
+//USER
 app.get("/api/user/data", authCtrl.userData);
-app.get("/api/sets/:id", ctrl.getSets);
-app.get("/api/set/:id", ctrl.getSet);
+
+//SONGS
 app.get("/api/songs/:id", ctrl.getSongs);
 app.post("/api/songs/", ctrl.addSong);
 app.put("/api/song", ctrl.updateSong);
-app.delete("/api/set/:set_id", ctrl.deleteSet);
 app.delete("/api/song/:id", ctrl.deleteSong);
+
+//SETS
+app.get("/api/sets/:id", ctrl.getSets);
+app.get("/api/set/:id", ctrl.getSet);
+app.delete("/api/set/:set_id", ctrl.deleteSet);
 app.post("/api/setsong/:song_id/:set_id", ctrl.addSetSong);
+app.put("/api/set/:set_id", ctrl.updateTitle);
 app.delete("/api/setsong/:song_id/:set_id", ctrl.deleteSetSong);
 
 app.listen(PORT, () => {

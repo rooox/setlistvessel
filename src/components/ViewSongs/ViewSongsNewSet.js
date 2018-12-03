@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import "./viewsongs.css";
-import "../reset.css";
+// import "../reset.css";
 import axios from "axios";
 // import expand from "./Expand.svg";
 import AddSong from "../AddSong/AddSong";
 // import ViewSong from "../ViewSong/ViewSong";
 import { connect } from "react-redux";
 
-class ViewSongsSet extends Component {
+class ViewSongsNewSet extends Component {
   constructor() {
     super();
 
@@ -91,7 +91,8 @@ class ViewSongsSet extends Component {
         .map(song => {
           return (
             <div
-              onClick={() => this.addSongToSet(song.id)}
+              onClick={() => this.props.addSong(song)}
+              //   onClick={console.log(song)}
               // onClick={() => this.handleSongClick(song)}
               className="song"
               key={song.id}
@@ -206,4 +207,4 @@ function mapStateToProps(state) {
   return state;
 }
 
-export default connect(mapStateToProps)(ViewSongsSet);
+export default connect(mapStateToProps)(ViewSongsNewSet);

@@ -5,17 +5,26 @@ import axios from "axios";
 import logo from "./shipp.svg";
 import slogo from "./SV.svg";
 import hamburger from "./hamburger.svg";
+import shipwheel from "./shipwheel.png";
 
 export default class Navbar extends Component {
   state = {
     displayMenu: false
   };
 
+  async logoutdrop() {
+    let res = await axios.get("/auth/logout");
+    // this.props.history.push("./");
+    console.log(res.data);
+    this.toggleMenu();
+  }
+
   async logout() {
     let res = await axios.get("/auth/logout");
     // this.props.history.push("./");
     console.log(res.data);
   }
+
   toggleMenu() {
     this.setState({ displayMenu: !this.state.displayMenu });
   }
@@ -38,9 +47,9 @@ export default class Navbar extends Component {
           />
         </div>
         <div className="links">
-          <Link to="/home">
+          {/* <Link to="/home">
             <button>HOME</button>
-          </Link>
+          </Link> */}
           <Link to="/sets">
             <button>SETS</button>
           </Link>
@@ -53,14 +62,15 @@ export default class Navbar extends Component {
           <Link to="/profile">
             <button>PROFILE</button>
           </Link> */}
-          <Link to="/">
+          {/* <Link to="/">
             <button>Login</button>
-          </Link>
+          </Link> */}
           <Link to="/goodbye">
             <button className="logout--button" onClick={() => this.logout()}>
               Logout
             </button>
           </Link>
+          <img className="shipwheel" src={shipwheel} />
         </div>
         <div
           className={
@@ -147,7 +157,7 @@ export default class Navbar extends Component {
                     : "dropdown-items-closed"
                 }
                 onClick={() => this.toggleMenu()}
-                onClick={() => this.logout()}
+                onClick={() => this.logoutdrop()}
               >
                 Logout
               </h4>

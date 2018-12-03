@@ -3,7 +3,9 @@
   justify-content: center;
   align-items: center;
   height: 86vh;
-  background: url(../Navbar/ocean2.jpg);
+  background-image: url(../Navbar/ocean2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
   background-color: black;
 }
 

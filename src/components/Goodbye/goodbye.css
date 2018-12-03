@@ -1,10 +1,36 @@
+@import url("https://fonts.googleapis.com/css?family=Cedarville+Cursive");
+
 .background {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 86vh;
   /* padding: 1rem; */
-  background: url(../Navbar/ocean2.jpg);
+  background-image: url(../Navbar/ocean2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
   background-color: black;
   /* background-color: #363636; */
+}
+
+.loggedout-quote {
+  font-family: "Cedarville Cursive", cursive;
+  color: black;
+}
+
+.loggedout-sv {
+  font-family: "Cinzel", serif, bold;
+  margin-left: 15px;
+  margin-top: 14px;
+  font-weight: 600;
+  text-shadow: -2px 2px 0px #b89130;
+}
+
+.loggedout-thanks {
+  font-family: "PT Serif", serif;
+  margin-top: 10px;
+}
+
+.loggedout {
+  font-family: "PT Serif", serif;
 }

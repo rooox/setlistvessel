@@ -8,7 +8,9 @@
   padding: 0;
   box-sizing: border-box;
   /* padding: 1rem; */
-  background: url(../Navbar/ocean2.jpg);
+  background-image: url(../Navbar/ocean2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
   background-color: black;
   /* background-color: #363636; */
 }

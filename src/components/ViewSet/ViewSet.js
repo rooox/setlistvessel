@@ -39,17 +39,29 @@ export default class ViewSet extends Component {
   };
   handleTitleInput = val => {
     this.setState({ title: val });
+    console.log(this.state.title);
   };
 
   addSongsToggle = () => {
     this.setState({ addSongsMode: true });
   };
 
+  async changeTitle() {
+    let set_id = this.props.selectedSet.id;
+    let setTitle = this.state.title;
+    console.log(
+      "id and title title:",
+      this.props.selectedSet.id,
+      this.state.title
+    );
+    await axios.put(`/api/set/${set_id}`, { setTitle });
+    this.props.cancelEditSet();
+  }
   async deleteSetSong(id) {
     let song_id = id;
     let set_id = this.props.selectedSet.id;
 
-    console.log("ids=", song_id, set_id);
+    // console.log("ids=", song_id, set_id);
     await axios.delete(`api/setsong/${song_id}/${set_id}`);
     this.getSet();
   }
@@ -58,7 +70,7 @@ export default class ViewSet extends Component {
     let set_id = this.props.selectedSet.id;
     console.log("ids=", set_id);
     await axios.delete(`api/set/${set_id}`);
-    this.props.deleteSongBacktrack();
+    this.props.deleteSetBacktrack();
   }
 
   render() {
@@ -122,13 +134,18 @@ export default class ViewSet extends Component {
           />
           <div className="viewset-songs">{editDisplaySet}</div>
           <div>
-            <button className="viewset-addsongs-button">Save Set</button>
             <button
               className="viewset-addsongs-button"
-              onClick={() => this.props.cancelEditSet()}
+              onClick={() => this.changeTitle()}
             >
-              Cancel
+              Save Set
             </button>
+            {/* <button
+              className="viewset-addsongs-button"
+              onClick={() => this.changeTitle()}
+            >
+              
+            </button> */}
             <button
               onClick={() => this.deleteSet()}
               style={{ borderColor: "red" }}

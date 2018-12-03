@@ -113,6 +113,7 @@ button {
   width: 278px;
   overflow: hidden;
   background-color: black;
+  z-index: 9999;
 }
 .dropdown-menu-open {
   background-color: black;
@@ -126,6 +127,7 @@ button {
   border-style: solid;
   border-color: #b89130;
   border-width: 0 0 1px 1px;
+  z-index: 9999;
 }
 
 /* .dropdown-menu-open:hover {
@@ -174,4 +176,9 @@ button {
 }
 h4 {
   text-decoration: none;
+}
+
+.shipwheel {
+  height: 33px;
+  margin-right: 10px;
 }

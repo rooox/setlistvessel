@@ -2,7 +2,7 @@ module.exports = {
   async getSets(req, res) {
     let db = req.app.get("db");
     let id = req.session.user.id;
-    console.log("id:", id);
+    // console.log("id:", id);
     let results = await db.set.get_sets(id);
     res.status(200).send(results);
   },
@@ -19,7 +19,7 @@ module.exports = {
     let db = req.app.get("db");
     let id = req.session.user.id;
     let results = await db.song.get_songs(id);
-    console.log(results);
+    // console.log(results);
     res.status(200).send(results);
   },
 
@@ -72,6 +72,14 @@ module.exports = {
     let song_id = req.params.song_id;
     let set_id = req.params.set_id;
     await db.set.add_set_song([song_id, set_id]);
+    res.sendStatus(200);
+  },
+
+  async updateTitle(req, res) {
+    let db = req.app.get("db");
+    let set_id = req.params.set_id;
+    let setTitle = req.body.setTitle;
+    await db.set.update_set_title([set_id, setTitle]);
     res.sendStatus(200);
   },
 

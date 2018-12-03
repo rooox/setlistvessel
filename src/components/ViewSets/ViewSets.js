@@ -78,18 +78,18 @@ class ViewSets extends Component {
     console.log("sets", this.state.sets);
     // console.log("in render:", this.state.sets);
     let displaySets = this.state.sets
-      // .sort(function(a, b) {
-      //   var nameA = a.title.toUpperCase();
-      //   var nameB = b.title.toUpperCase();
-      //   if (nameA < nameB) {
-      //     return -1;
-      //   }
-      //   if (nameA > nameB) {
-      //     return 1;
-      //   }
+      .sort(function(a, b) {
+        var nameA = a.title.toUpperCase();
+        var nameB = b.title.toUpperCase();
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
 
-      //   return 0;
-      // })
+        return 0;
+      })
       .map(set => {
         return (
           <div
@@ -135,7 +135,7 @@ class ViewSets extends Component {
         <div className="viewsets">
           <h4 className="yoursets">Your Sets</h4>
           <div className="set--container" />
-          <div>{displaySets}</div>
+          <div className="displaysong">{displaySets}</div>
           <button onClick={() => this.createSetToggle()}>Add Set</button>
         </div>
       </div>

@@ -10,7 +10,9 @@
   align-items: center;
   height: 86vh;
   /* padding: 1rem; */
-  background: url(ocean2.jpg);
+  background-image: url(../Navbar/ocean2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
   background-color: black;
   /* background-color: #363636; */
 }
@@ -22,8 +24,8 @@
    */
   /* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url(decklight.jpeg); */
-background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url(decklight.jpeg);;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url(decklight.jpeg);
   /* background: url(decklight.jpeg); */
   background-size: 500px 318px;
   justify-content: center;
@@ -58,8 +60,8 @@ background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
   height: 660px;
   width: 400px;
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-    url(decklight.jpeg);;
-     background-size: 500px 318px;
+    url(decklight.jpeg);
+  background-size: 500px 318px;
   /* background: linear-gradient(rgba(68, 44, 1, 0.5), rgba(68, 44, 1, 0.5)),
     url(/static/media/decklight.f2e10f0e.jpeg); */
   /* background-color: rgba(0, 0, 0, 0.1); */

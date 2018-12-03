@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import "../ViewSongs/viewsongs.css";
 import "./addset.css";
 import axios from "axios";
-import ViewSongsSet from "../ViewSongs/ViewSongsSet";
+import x1 from "../ViewSet/x7d.svg";
+import ViewSongsNewSet from "../ViewSongs/ViewSongsNewSet";
 
 class AddSet extends Component {
   constructor() {
@@ -12,7 +13,8 @@ class AddSet extends Component {
     this.state = {
       title: "",
       setSongs: [],
-      addSongMode: false
+      addSongMode: false,
+      songInf: []
     };
   }
 
@@ -27,22 +29,74 @@ class AddSet extends Component {
     document.getElementById("create-song").reset();
   };
 
-  async addSet() {
-    let newSet = {
-      id: this.props.user.id,
-      title: this.state.title,
-      songs: []
-    };
-    await axios.post(`/api/Sets/`, { newSet });
-    this.props.Sets.push(newSet);
-    this.props.componentDidMount();
-    // this.clearSet();
-    console.log({ newSet });
-    console.log(this.props.Sets);
-  }
+  deleteSong = id => {
+    console.log("songid=,", id);
+    let remainingSongs = this.state.setSongs;
+    let songIndex = remainingSongs.findIndex(song => song.id === id);
+    let removeSong = remainingSongs.splice(songIndex, 1);
+    console.log("remainingSongs:", removeSong);
+    // return remainingSongs;
+    this.setState = { setSongs: remainingSongs };
+    console.log("state.setSongs:", this.state.setSongs);
+  };
+
+  // songstuff = () => {
+  //   let songInfo = this.state.setSongs.map(song => {
+  //     [...song.id];
+  //   });
+  //   this.setState({ songInf: songInfo });
+  // };
+  // async addSet() {
+  //   let songInfo = this.state.setSongs.map(song => {
+  //     song.id;
+  //   });
+  //   let newSet = {
+  //     id: this.props.user.id,
+  //     title: this.state.title,
+  //     songs: [songInfo]
+  //   };
+  //   await axios.post(`/api/Sets/`, { newSet });
+  //   this.props.componentDidMount();
+  //   // this.clearSet();
+  //   console.log({ newSet });
+  //   console.log(this.props.Sets);
+  // }
+
+  addSong = song => {
+    // console.log("song", song);
+    this.setState({
+      setSongs:
+        this.state.setSongs === [] ? song : [...this.state.setSongs, song]
+    });
+    console.log(this.state.songInf);
+    // console.log("state songs", this.state.setSongs);
+  };
 
   render() {
-    console.log(this.state.title);
+    let viewSetSongs = this.state.setSongs.map(song => {
+      return (
+        // <div className="viewset-songs" key={set.song_id}>
+        <div className="song" key={song.id} style={{ position: "relative" }}>
+          <img
+            className="x"
+            src={x1}
+            onClick={() => this.deleteSong(song.id)}
+          />
+          <div className="key-title">
+            <h5>{song.key}</h5>
+            <h5 className="verticalbar"> | </h5>
+            <h5 className="key-title-song-title">{song.song_title}</h5>
+          </div>
+          <div className="tuning-chords">
+            <h5>{song.tuning}</h5>
+            <h5 className="verticalbar"> | </h5>
+            <h5>{song.chords}</h5>
+          </div>
+        </div>
+        // </div>
+      );
+    });
+
     return this.state.addSongMode ? (
       <div className="addsongtoset">
         <form id="create-Set" className="addset--container">
@@ -54,9 +108,7 @@ class AddSet extends Component {
             placeholder="Enter title..."
             type="text"
           />
-          <div className="addset-songs">
-            <p>Songs</p>
-          </div>
+          <div className="addset-songs">{viewSetSongs}</div>
           <div style={{ display: "flex", height: "85px" }}>
             <div className="addset-buttons">
               <button onClick={() => this.props.createSetToggle()}>
@@ -67,7 +119,7 @@ class AddSet extends Component {
           </div>
         </form>
         <div>
-          <ViewSongsSet />
+          <ViewSongsNewSet addSong={this.addSong} />
         </div>
       </div>
     ) : (
@@ -79,9 +131,7 @@ class AddSet extends Component {
           placeholder="Enter title..."
           type="text"
         />
-        <div className="addset-songs">
-          <p>Songs</p>
-        </div>
+        <div className="addset-songs">{viewSetSongs}</div>
         <div style={{ display: "flex", height: "85px" }}>
           <button onClick={this.addSongToggle}>Add Song</button>
           <div className="addset-buttons">
