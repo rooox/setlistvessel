@@ -75,6 +75,13 @@ module.exports = {
     res.sendStatus(200);
   },
 
+  async createSet(req, res) {
+    let { id, title, songs, userId } = req.body.newSet;
+    let db = req.app.get("db");
+    let [newSet] = await db.create_set([id, title, songs, userId]);
+    res.status(200).send(console.log(newSet));
+  },
+
   async updateTitle(req, res) {
     let db = req.app.get("db");
     let set_id = req.params.set_id;

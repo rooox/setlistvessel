@@ -36,7 +36,7 @@ class AddSet extends Component {
     let removeSong = remainingSongs.splice(songIndex, 1);
     console.log("remainingSongs:", removeSong);
     // return remainingSongs;
-    this.setState = { setSongs: remainingSongs };
+    this.setState({ setSongs: remainingSongs });
     console.log("state.setSongs:", this.state.setSongs);
   };
 
@@ -46,21 +46,23 @@ class AddSet extends Component {
   //   });
   //   this.setState({ songInf: songInfo });
   // };
-  // async addSet() {
-  //   let songInfo = this.state.setSongs.map(song => {
-  //     song.id;
-  //   });
-  //   let newSet = {
-  //     id: this.props.user.id,
-  //     title: this.state.title,
-  //     songs: [songInfo]
-  //   };
-  //   await axios.post(`/api/Sets/`, { newSet });
-  //   this.props.componentDidMount();
-  //   // this.clearSet();
-  //   console.log({ newSet });
-  //   console.log(this.props.Sets);
-  // }
+
+  async addSet() {
+    let songInfo = this.state.setSongs.map(song => {
+      return song.id;
+    });
+    let newSet = {
+      id: this.props.user.id,
+      title: this.state.title,
+      songs: [songInfo],
+      userId: this.props.user.id
+    };
+    await axios.post(`/api/Sets/`, { newSet });
+    this.props.componentDidMount();
+    // this.clearSet();
+    console.log({ newSet });
+    console.log(this.props.Sets);
+  }
 
   addSong = song => {
     // console.log("song", song);
