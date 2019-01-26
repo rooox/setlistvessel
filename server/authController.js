@@ -45,7 +45,7 @@ module.exports = {
         };
 
         res.status(200).send({ message: "Logged in", user: req.session.user });
-        console.log(req.session.user);
+        console.log("session.user", req.session.user);
       } else {
         res.status(401).send({ message: "Password is incorrect" });
       }

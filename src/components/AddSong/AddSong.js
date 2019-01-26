@@ -37,8 +37,7 @@ class AddSong extends Component {
 
   async addSong() {
     let newSong = {
-      id: 2,
-      // id: this.props.user.id,
+      id: this.props.user.id,
       song_title: this.state.title,
       key: this.state.key,
       tuning: this.state.tuning,

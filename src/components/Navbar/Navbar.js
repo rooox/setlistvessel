@@ -6,8 +6,9 @@ import logo from "./shipp.svg";
 import slogo from "./SV.svg";
 import hamburger from "./hamburger.svg";
 import shipwheel from "./shipwheel.png";
+import { withRouter } from "react-router-dom";
 
-export default class Navbar extends Component {
+class Navbar extends Component {
   state = {
     displayMenu: false
   };
@@ -30,6 +31,7 @@ export default class Navbar extends Component {
   }
 
   render() {
+    console.log("this.props is:", this.props);
     return (
       <header>
         <div className="logo--container slogo">
@@ -38,8 +40,14 @@ export default class Navbar extends Component {
         <div className="logo--container">
           <img src={logo} className="logo--nav" alt="Setlist Vessel" />
         </div>
-        <div className="hamburger--container">
-          return displayMenu ? ( )
+        <div
+          className={
+            this.props.history.location.pathname === "/"
+              ? "none"
+              : "hamburger--container"
+          }
+        >
+          {/* return displayMenu ? ( ) */}
           <img
             src={hamburger}
             className="hamburger"
@@ -66,11 +74,25 @@ export default class Navbar extends Component {
             <button>Login</button>
           </Link> */}
           <Link to="/goodbye">
-            <button className="logout--button" onClick={() => this.logout()}>
+            <button
+              className={
+                this.props.history.location.pathname === "/"
+                  ? "none"
+                  : "logout--button"
+              }
+              onClick={() => this.logout()}
+            >
               Logout
             </button>
           </Link>
-          <img className="shipwheel" src={shipwheel} />
+          <img
+            className={
+              this.props.history.location.pathname === "/"
+                ? "none"
+                : "shipwheel"
+            }
+            src={shipwheel}
+          />
         </div>
         <div
           className={
@@ -81,62 +103,27 @@ export default class Navbar extends Component {
         >
           <div>
             <Link to="/home">
-              <h4
-                className={
-                  this.state.displayMenu
-                    ? "dropdown-items-open"
-                    : "dropdown-items-closed"
-                }
-                onClick={() => this.toggleMenu()}
-              >
+              <h4 className="ham-item" onClick={() => this.toggleMenu()}>
                 Home
               </h4>
             </Link>
             <Link to="/sets">
-              <h4
-                className={
-                  this.state.displayMenu
-                    ? "dropdown-items-open"
-                    : "dropdown-items-closed"
-                }
-                onClick={() => this.toggleMenu()}
-              >
+              <h4 className="ham-item" onClick={() => this.toggleMenu()}>
                 Sets
               </h4>
             </Link>
             <Link to="/songs">
-              <h4
-                className={
-                  this.state.displayMenu
-                    ? "dropdown-items-open"
-                    : "dropdown-items-closed"
-                }
-                onClick={() => this.toggleMenu()}
-              >
+              <h4 className="ham-item" onClick={() => this.toggleMenu()}>
                 Songs
               </h4>
             </Link>
             <Link to="/about">
-              <h4
-                className={
-                  this.state.displayMenu
-                    ? "dropdown-items-open"
-                    : "dropdown-items-closed"
-                }
-                onClick={() => this.toggleMenu()}
-              >
+              <h4 className="ham-item" onClick={() => this.toggleMenu()}>
                 About
               </h4>
             </Link>
             <Link to="/profile">
-              <h4
-                className={
-                  this.state.displayMenu
-                    ? "dropdown-items-open"
-                    : "dropdown-items-closed"
-                }
-                onClick={() => this.toggleMenu()}
-              >
+              <h4 className="ham-item" onClick={() => this.toggleMenu()}>
                 Profile
               </h4>
             </Link>
@@ -151,11 +138,12 @@ export default class Navbar extends Component {
           </Link> */}
             <Link to="/goodbye">
               <h4
-                className={
-                  this.state.displayMenu
-                    ? "dropdown-items-open"
-                    : "dropdown-items-closed"
-                }
+                // style={
+                //   this.props.history.location.pathname
+                //     ? { display: "none" }
+                //     : {}
+                // }
+                className="ham-item"
                 onClick={() => this.toggleMenu()}
                 onClick={() => this.logoutdrop()}
               >
@@ -168,3 +156,5 @@ export default class Navbar extends Component {
     );
   }
 }
+
+export default withRouter(Navbar);
