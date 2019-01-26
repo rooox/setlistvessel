@@ -85,14 +85,14 @@ class Navbar extends Component {
               Logout
             </button>
           </Link>
-          <img
+          {/* <img
             className={
               this.props.history.location.pathname === "/"
                 ? "none"
                 : "shipwheel"
             }
             src={shipwheel}
-          />
+          /> */}
         </div>
         <div
           className={
