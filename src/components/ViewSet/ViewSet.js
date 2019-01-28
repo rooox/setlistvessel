@@ -21,9 +21,6 @@ export default class ViewSet extends Component {
       this.setState({
         setlist: res.data
       });
-      console.log("Setlist id", this.props.selectedSet.id);
-      console.log("res.data", res.data);
-      console.log("Setlist", this.state.setlist);
     });
   }
 
@@ -32,14 +29,10 @@ export default class ViewSet extends Component {
       this.setState({
         setlist: res.data
       });
-      // console.log("Setlist id", id);
-      console.log("res.data", res.data);
-      console.log("Setlist", this.state.setlist);
     });
   };
   handleTitleInput = val => {
     this.setState({ title: val });
-    console.log(this.state.title);
   };
 
   addSongsToggle = () => {
@@ -49,11 +42,6 @@ export default class ViewSet extends Component {
   async changeTitle() {
     let set_id = this.props.selectedSet.id;
     let setTitle = this.state.title;
-    console.log(
-      "id and title title:",
-      this.props.selectedSet.id,
-      this.state.title
-    );
     await axios.put(`/api/set/${set_id}`, { setTitle });
     this.props.cancelEditSet();
   }
@@ -61,23 +49,19 @@ export default class ViewSet extends Component {
     let song_id = id;
     let set_id = this.props.selectedSet.id;
 
-    // console.log("ids=", song_id, set_id);
     await axios.delete(`api/setsong/${song_id}/${set_id}`);
     this.getSet();
   }
 
   async deleteSet() {
     let set_id = this.props.selectedSet.id;
-    console.log("ids=", set_id);
     await axios.delete(`api/set/${set_id}`);
     this.props.deleteSetBacktrack();
   }
 
   render() {
-    console.log(this.props.setlist);
     let displaySet = this.state.setlist.map(set => {
       return (
-        // <div className="viewset-songs" key={set.song_id}>
         <div className="song" key={set.song_id}>
           <div className="key-title">
             <h5>{set.key}</h5>
@@ -90,12 +74,10 @@ export default class ViewSet extends Component {
             <h5>{set.chords}</h5>
           </div>
         </div>
-        // </div>
       );
     });
     let editDisplaySet = this.state.setlist.map(set => {
       return (
-        // <div className="viewset-songs" key={set.song_id}>
         <div
           className="song"
           key={set.song_id}
@@ -117,7 +99,6 @@ export default class ViewSet extends Component {
             <h5>{set.chords}</h5>
           </div>
         </div>
-        // </div>
       );
     });
 
@@ -140,12 +121,6 @@ export default class ViewSet extends Component {
             >
               Save Set
             </button>
-            {/* <button
-              className="viewset-addsongs-button"
-              onClick={() => this.changeTitle()}
-            >
-              
-            </button> */}
             <button
               onClick={() => this.deleteSet()}
               style={{ borderColor: "red" }}
@@ -165,10 +140,6 @@ export default class ViewSet extends Component {
         </div>
       </div>
     ) : (
-      // <EditSet
-      //   title={this.props.selectedTitle}
-      //   handleTitleInput={this.handleTitleInput}
-      // />
       <div className="viewset--container">
         <img
           onClick={() => this.props.editSetToggle()}
@@ -181,48 +152,3 @@ export default class ViewSet extends Component {
     );
   }
 }
-
-// return this.props.editMode ? (
-//   <form id="create-set" className="addset--container">
-//     <h4 className="viewset-title edit">{this.state.title}</h4>
-//     <h4 className="edit-set-title">Title:</h4>
-//     <input
-//       className="edit-set-input"
-//       onChange={e => this.handleTitleInput(e.target.value)}
-//       value={this.state.title}
-//       type="text"
-//     />
-//     <div className="viewset-songs">{editDisplaySet}</div>
-//     <div>
-//       <button
-//         onClick={this.addSongsToggle}
-//         className="viewset-addsongs-button"
-//       >
-//         Add Songs
-//       </button>
-//       <button
-//         className="viewset-addsongs-button"
-//         onClick={() => this.props.cancelEditSet()}
-//       >
-//         Cancel
-//       </button>
-//       <button className="viewset-addsongs-button">Delete Set</button>
-//     </div>
-//   </form>
-// ) : (
-//   // <EditSet
-//   //   title={this.props.selectedTitle}
-//   //   handleTitleInput={this.handleTitleInput}
-//   // />
-//   <div className="viewset--container">
-//     <img
-//       onClick={() => this.props.editSetToggle()}
-//       className="pencil"
-//       src={editPencil}
-//     />
-//     <h4 className="viewset-title">{this.state.title}</h4>
-//     <div className="viewset-songs">{displaySet}</div>
-//   </div>
-// );
-// }
-// }

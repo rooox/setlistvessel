@@ -2,7 +2,6 @@ module.exports = {
   async getSets(req, res) {
     let db = req.app.get("db");
     let id = req.session.user.id;
-    // console.log("id:", id);
     let results = await db.set.get_sets(id);
     res.status(200).send(results);
   },
@@ -15,11 +14,9 @@ module.exports = {
   },
 
   async getSongs(req, res) {
-    console.log("string");
     let db = req.app.get("db");
     let id = req.session.user.id;
     let results = await db.song.get_songs(id);
-    // console.log(results);
     res.status(200).send(results);
   },
 
@@ -56,7 +53,6 @@ module.exports = {
     let id = req.params.id;
     await db.song.delete_song(id);
     res.sendStatus(200);
-    console.log("delete song run");
   },
 
   async deleteSetSong(req, res) {
@@ -76,9 +72,9 @@ module.exports = {
   },
 
   async createSet(req, res) {
-    let { id, title, songs, userId } = req.body.newSet;
+    let { title, id, songs } = req.body.newSet;
     let db = req.app.get("db");
-    let [newSet] = await db.create_set([id, title, songs, userId]);
+    let [newSet] = await db.set.create_set([title, id, songs]);
     res.status(200).send(console.log(newSet));
   },
 
@@ -97,15 +93,3 @@ module.exports = {
     res.sendStatus(200);
   }
 };
-// async addGames(req, res) {
-//        let db = req.app.get('db')
-//        let gameId = req.params.id
-//        let userId = req.session.user.id;
-//        let results = await db.add_game_list(gameId, userId)
-//        res.status(200).send(results)
-
-// async myGames(req, res) {
-//        let db = req.app.get('db')
-//        let id = req.params.id
-//        let results = await db.owned_list(id)
-//        res.status(200).send(results)

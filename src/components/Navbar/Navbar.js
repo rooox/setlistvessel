@@ -5,7 +5,7 @@ import axios from "axios";
 import logo from "./shipp.svg";
 import slogo from "./SV.svg";
 import hamburger from "./hamburger.svg";
-import shipwheel from "./shipwheel.png";
+// import shipwheel from "./shipwheel.png";
 import { withRouter } from "react-router-dom";
 
 class Navbar extends Component {
@@ -15,15 +15,11 @@ class Navbar extends Component {
 
   async logoutdrop() {
     let res = await axios.get("/auth/logout");
-    // this.props.history.push("./");
-    console.log(res.data);
     this.toggleMenu();
   }
 
   async logout() {
     let res = await axios.get("/auth/logout");
-    // this.props.history.push("./");
-    console.log(res.data);
   }
 
   toggleMenu() {
@@ -31,7 +27,6 @@ class Navbar extends Component {
   }
 
   render() {
-    console.log("this.props is:", this.props);
     return (
       <header>
         <div className="logo--container slogo">
@@ -47,7 +42,6 @@ class Navbar extends Component {
               : "hamburger--container"
           }
         >
-          {/* return displayMenu ? ( ) */}
           <img
             src={hamburger}
             className="hamburger"

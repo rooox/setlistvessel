@@ -21,22 +21,9 @@ class ViewSets extends Component {
   }
 
   async componentDidMount() {
-    console.log(this.props.user);
     let sets = await axios.get(`/api/sets/${this.props.user.id}`);
     this.setState({ sets: sets.data });
-    console.log("in component did mount", this.state.sets);
   }
-
-  // getSet(id) {
-  //   axios.get(`/api/set/${id}`).then(res => {
-  //     this.setState({
-  //       setlist: res.data
-  //     });
-  //     console.log("Setlist id", id);
-  //     console.log("res.data", res.data);
-  //     console.log("Setlist", this.state.setlist);
-  //   });
-  // }
 
   viewSetToggle = set => {
     this.setState({
@@ -45,13 +32,10 @@ class ViewSets extends Component {
       addSet: false,
       editMode: false
     });
-    // this.getSet(set.id);
-    console.log("view set", this.state.viewSet);
   };
 
   createSetToggle = () => {
     this.setState({ addSet: !this.state.addSet, viewSet: false });
-    console.log(this.state.addSet);
   };
 
   editSetToggle = () => {
@@ -75,8 +59,6 @@ class ViewSets extends Component {
   };
 
   render() {
-    console.log("sets", this.state.sets);
-    // console.log("in render:", this.state.sets);
     let displaySets = this.state.sets
       .sort(function(a, b) {
         var nameA = a.title.toUpperCase();
@@ -94,7 +76,6 @@ class ViewSets extends Component {
         return (
           <div
             onClick={() => this.viewSetToggle(set)}
-            // onClick={() => this.getSet()}
             className="set"
             key={set.id}
           >
@@ -126,7 +107,6 @@ class ViewSets extends Component {
             viewSetToggle={this.viewSetToggle}
             state={this.state}
             deleteSetBacktrack={this.deleteSetBacktrack}
-            // getSet={this.getSet}
           />
         </div>
       )

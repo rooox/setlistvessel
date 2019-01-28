@@ -14,7 +14,8 @@ class AddSet extends Component {
       title: "",
       setSongs: [],
       addSongMode: false,
-      songInf: []
+      songInf: [],
+      songIds: []
     };
   }
 
@@ -23,61 +24,39 @@ class AddSet extends Component {
   }
   addSongToggle = () => {
     this.setState({ addSongMode: true });
-    console.log(this.state.addSongMode);
   };
   clearSet = () => {
     document.getElementById("create-song").reset();
   };
 
   deleteSong = id => {
-    console.log("songid=,", id);
     let remainingSongs = this.state.setSongs;
     let songIndex = remainingSongs.findIndex(song => song.id === id);
-    let removeSong = remainingSongs.splice(songIndex, 1);
-    console.log("remainingSongs:", removeSong);
-    // return remainingSongs;
+    remainingSongs.splice(songIndex, 1);
     this.setState({ setSongs: remainingSongs });
-    console.log("state.setSongs:", this.state.setSongs);
   };
 
-  // songstuff = () => {
-  //   let songInfo = this.state.setSongs.map(song => {
-  //     [...song.id];
-  //   });
-  //   this.setState({ songInf: songInfo });
-  // };
-
   async addSet() {
-    let songInfo = this.state.setSongs.map(song => {
-      return song.id;
-    });
     let newSet = {
-      id: this.props.user.id,
       title: this.state.title,
-      songs: [songInfo],
-      userId: this.props.user.id
+      id: this.props.user.id,
+      songs: this.state.songIds
     };
-    await axios.post(`/api/Sets/`, { newSet });
+    await axios.post(`/api/set`, { newSet });
     this.props.componentDidMount();
-    // this.clearSet();
-    console.log({ newSet });
-    console.log(this.props.Sets);
   }
 
-  addSong = song => {
-    // console.log("song", song);
-    this.setState({
-      setSongs:
-        this.state.setSongs === [] ? song : [...this.state.setSongs, song]
-    });
-    console.log(this.state.songInf);
-    // console.log("state songs", this.state.setSongs);
+  addSong = (song, songId) => {
+    let setSongs = this.state.setSongs;
+    let songIds = this.state.songIds;
+    setSongs.push(song);
+    songIds.push(songId);
+    this.setState({ setSongs: setSongs, songIds: songIds });
   };
 
   render() {
     let viewSetSongs = this.state.setSongs.map(song => {
       return (
-        // <div className="viewset-songs" key={set.song_id}>
         <div className="song" key={song.id} style={{ position: "relative" }}>
           <img
             className="x"
@@ -95,7 +74,6 @@ class AddSet extends Component {
             <h5>{song.chords}</h5>
           </div>
         </div>
-        // </div>
       );
     });
 

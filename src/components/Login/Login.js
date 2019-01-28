@@ -52,7 +52,6 @@ class Login extends Component {
       email: this.state.email,
       password: this.state.password
     });
-    console.log(res);
     if (res.data.message === "Logged in") {
       this.props.updateUser(res.data.user);
       this.props.history.push("/home");
@@ -79,7 +78,6 @@ class Login extends Component {
       lastname: this.state.lastname,
       phone: this.state.phone
     });
-    console.log(res);
     if (res.data.message === "Logged in") {
       this.props.history.push("/home");
     } else {
@@ -88,8 +86,6 @@ class Login extends Component {
   }
   async logout() {
     let res = await axios.get("/auth/logout");
-    // this.props.history.push("./");
-    console.log(res.data);
   }
 
   render() {

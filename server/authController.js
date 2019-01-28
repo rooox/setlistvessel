@@ -16,7 +16,6 @@ module.exports = {
       lastname,
       phone
     ]);
-    console.log(createdUser);
     req.session.user = {
       id: createdUser.id,
       username: createdUser.user_username,

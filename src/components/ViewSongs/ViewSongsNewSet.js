@@ -26,13 +26,11 @@ class ViewSongsNewSet extends Component {
       this.setState({
         songs: res.data
       });
-      console.log("in component did mount", this.state.songs);
     });
   }
 
   createSongToggle = () => {
     this.setState({ addSong: !this.state.addSong, viewSong: false });
-    console.log(this.state.addSong);
   };
 
   viewSongToggle = song => {
@@ -42,7 +40,6 @@ class ViewSongsNewSet extends Component {
       addSong: false,
       editMode: false
     });
-    console.log(this.state.viewSong);
   };
 
   addSongCancel = () => {
@@ -57,22 +54,11 @@ class ViewSongsNewSet extends Component {
   }
 
   addSongToSet(id) {
-    // this.props.setlist.filter(song => {
-    //   if (song.song_id === id) {
-    //     alert("Please select a song that is not currently in your set");
-    //   } else {
     axios.post(`api/setsong/${id}/${this.props.set_id}`);
     this.props.getSet();
-    //   console.log(id, this.props.set_id);
-    console.log("Song added to set!!");
   }
-  // });
-  // this.props.getSet(this.props.set_id);
-  // }
 
   render() {
-    console.log("props set id:", this.props.set_id);
-    // console.log("setlist in vss", this.props.setlist);
     let displaySongs;
     if (!this.state.filterSongs) {
       displaySongs = this.state.songs
@@ -91,9 +77,7 @@ class ViewSongsNewSet extends Component {
         .map(song => {
           return (
             <div
-              onClick={() => this.props.addSong(song)}
-              //   onClick={console.log(song)}
-              // onClick={() => this.handleSongClick(song)}
+              onClick={() => this.props.addSong(song, song.id)}
               className="song"
               key={song.id}
             >
@@ -119,12 +103,7 @@ class ViewSongsNewSet extends Component {
         })
         .map(song => {
           return (
-            <div
-              // onClick={() => this.viewSongToggle()}
-              // onClick={() => this.handleSongClick(song)}
-              className="song"
-              key={song.id}
-            >
+            <div className="song" key={song.id}>
               <div className="key-title">
                 <h5>{song.key}</h5>
                 <h5> | </h5>
@@ -171,16 +150,7 @@ class ViewSongsNewSet extends Component {
             />
             <div className="song--container" />
             <div className="displaysong">{displaySongs}</div>
-            {/* <button onClick={() => this.createSongToggle()}>New Song</button> */}
           </div>
-          {/* <ViewSong
-            componentDidMount={this.componentDidMount}
-            songs={this.state.songs}
-            createSongToggle={this.createSongToggle}
-            selectedSong={this.state.selectedSong}
-            editSongToggle={this.editSongToggle}
-            editMode={this.state.editMode}
-          /> */}
         </div>
       )
     ) : (
@@ -193,10 +163,7 @@ class ViewSongsNewSet extends Component {
         />
         <div className="song--container" />
         <div className="displaysong">{displaySongs}</div>
-        <div style={{ display: "flex" }}>
-          {/* <button onClick={() => this.createSongToggle()}>New Song</button> */}
-          {/* <button onClick={() => this.addSongCancel()}>Cancel</button> */}
-        </div>
+        <div style={{ display: "flex" }} />
       </div>
     );
   }

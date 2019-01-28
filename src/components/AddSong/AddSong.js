@@ -48,16 +48,11 @@ class AddSong extends Component {
     this.props.songs.push(newSong);
     this.props.componentDidMount();
     this.props.cancelAddSong();
-    // this.clearSong();
-    console.log({ newSong });
-    console.log(this.props.songs);
   }
 
   render() {
-    console.log(this.state);
     return (
       <form id="create-song" className="addsong--container">
-        {/* <div className="addsong--inputs"> */}
         <h4>Title:</h4>
         <input
           onChange={e => this.handleTitleInput(e.target.value)}
@@ -89,7 +84,6 @@ class AddSong extends Component {
           onChange={e => this.handleLyricsInput(e.target.value)}
           placeholder="Enter lyrics..."
         />
-        {/* </div> */}
         <div className="addsong-buttons">
           <button onClick={() => this.props.cancelAddSong()}>Cancel</button>
           <button onClick={() => this.addSong()}>Add Song</button>

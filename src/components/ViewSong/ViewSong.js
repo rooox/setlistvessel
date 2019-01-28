@@ -13,20 +13,7 @@ export default class ViewSong extends Component {
     chords: this.props.selectedSong.chords,
     lyrics: this.props.selectedSong.lyrics,
     lightMode: false
-    // editMode: false
   };
-
-  // componentDidUpdate = song => {
-  //   this.setState({
-  //     id: song.id,
-  //     song_title: song.song_title,
-  //     key: song.key,
-  //     tuning: song.tuning,
-  //     chords: song.tuning,
-  //     lyrics: song.lyrics
-  //   });
-  //   console.log("selected song: ", song);
-  // };
 
   handleTitleInput(val) {
     this.setState({ song_title: val });
@@ -56,7 +43,6 @@ export default class ViewSong extends Component {
       chords: this.props.selectedSong.chords,
       lyrics: this.props.selectedSong.lyrics
     });
-    console.log("state from edit song", this.state);
     this.props.editSongToggle();
   }
 
@@ -69,7 +55,7 @@ export default class ViewSong extends Component {
       chords: this.state.chords,
       lyrics: this.state.lyrics
     };
-    await axios.put(`api/song/`, { updatedSong }, console.log("Im hit"));
+    await axios.put(`api/song/`, { updatedSong });
     this.props.cancelEditSong();
     this.props.getSongs();
   }
@@ -81,10 +67,8 @@ export default class ViewSong extends Component {
   }
 
   render() {
-    console.log(this.state);
     return this.props.editMode ? (
       <form id="create-song" className="addsong--container">
-        {/* <div className="addsong--inputs"> */}
         <h4>Title:</h4>
         <input
           onChange={e => this.handleTitleInput(e.target.value)}

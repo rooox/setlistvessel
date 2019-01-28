@@ -22,14 +22,10 @@ class ViewSongs extends Component {
     this.componentDidMount = this.componentDidMount.bind(this);
   }
   componentDidMount() {
-    console.log(this.props.user.id);
     axios.get(`/api/songs/${this.props.user.id}`).then(res => {
-      console.log("hitting promise");
-      console.log(res.data);
       this.setState({
         songs: res.data
       });
-      // console.log("in component did mount", this.state.songs);
     });
   }
 
@@ -38,23 +34,19 @@ class ViewSongs extends Component {
       this.setState({
         songs: res.data
       });
-      console.log("in component did mount", this.state.songs);
     });
   };
 
   createSongToggle = () => {
     this.setState({ addSong: true, viewSong: false, editMode: false });
-    console.log("this is create song toggle");
   };
 
   cancelEditSong = () => {
     this.setState({ addSong: false, editMode: false, viewSong: true });
-    console.log("this is cancel edit");
   };
 
   cancelAddSong = () => {
     this.setState({ addSong: false, editMode: false, viewSong: false });
-    console.log("add song:", this.state.addSong);
   };
 
   viewSongToggle = song => {
@@ -64,7 +56,6 @@ class ViewSongs extends Component {
       addSong: false,
       editMode: false
     });
-    console.log("selected song: ", song);
   };
 
   editSongToggle = () => {
@@ -76,8 +67,6 @@ class ViewSongs extends Component {
   }
 
   render() {
-    console.log("state.songs:", this.state.songs);
-    console.log("user id:", this.props.user.id);
     let displaySongs;
     if (!this.state.filterSongs) {
       displaySongs = this.state.songs
@@ -97,7 +86,6 @@ class ViewSongs extends Component {
           return (
             <div
               onClick={() => this.viewSongToggle(song)}
-              // onClick={() => this.handleSongClick(song)}
               className="song"
               key={song.id}
             >
@@ -125,7 +113,6 @@ class ViewSongs extends Component {
           return (
             <div
               onClick={() => this.viewSongToggle(song)}
-              // onClick={() => this.handleSongClick(song)}
               className="song"
               key={song.id}
             >
